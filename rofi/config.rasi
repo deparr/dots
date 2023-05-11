@@ -1,0 +1,16 @@
+configuration{
+    modi: "run,drun";
+    font: "JetBrainsMonoNL Nerd Font 12";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "alacritty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+	display-drun: "";
+	display-run: "";
+	display-window: "缾";
+}
+
+@theme "style"

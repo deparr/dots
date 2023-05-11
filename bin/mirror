@@ -1,0 +1,11 @@
+#!/bin/sh
+
+xrandr --output eDP --auto
+xrandr --output HDMI-A-0 --auto
+
+~/.fehbg
+
+eww kill
+eww open bar_1
+kill -USR1 $(pgrep qtile)
+dunstify -a xrandr -i display 'mirror on hdmi'

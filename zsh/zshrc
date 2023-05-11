@@ -1,0 +1,74 @@
+#!/usr/bin/zsh
+# Vars
+
+# ZSH options
+setopt HIST_IGNORE_SPACE # leading space doesnt add hist
+setopt FUNCTION_ARGZERO  # $0 is set to function name
+setopt INTERACTIVE_COMMENTS
+setopt AUTOCD
+
+unset PROMPT_SUBST
+
+# ZSH Plugins
+#fpath
+
+# Key binds
+bindkey -e
+bindkey '^ ' autosuggest-accept
+bindkey '^n' autosuggest-accept
+
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+# zsh stuff
+# Extra includes
+include=(
+    'aliases'
+    'functions'
+)
+for s in "${include[@]}"; do
+    source $XDG_CONFIG_HOME/zsh/include/${s}.zsh
+done; unset include
+
+export HISTFILE=$HOME/.local/zsh_history
+export HISTSIZE=100000000
+export SAVEHIST=100000000
+
+# Language specific stuff
+# Rust?
+if [ -d /usr/local/go/bin/ ]; then
+  export GOPATH=~/go
+  export GOBIN="$GOPATH/bin"
+  export PATH="/usr/local/go/bin:$GOBIN:$PATH"
+elif [ -d ~/.go/bin/ ]; then
+  export GOPATH="$HOME/.gopath"
+  export GOROOT="$HOME/.go"
+  export GOBIN="$GOPATH/bin"
+  export PATH="$GOPATH/bin:$PATH"
+fi
+
+# nvm - node
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# not even sure what this is
+zstyle :compinstall filename '/home/dpar/.zshrc'
+autoload -Uz compinit
+compinit
+
+# Prompt
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/zsh/starship.toml
+eval "$(starship init zsh)"
+
+plugin=(
+    #'zsh-nvm' # source usin `snode` function instead
+    'zsh-autosuggestions'
+    # syntax should always be last
+    'zsh-syntax-highlighting'
+)
+for p in "${plugin[@]}"; do
+    source $XDG_CONFIG_HOME/zsh/plugin/${p}/${p}.zsh
+done; unset plugin
+

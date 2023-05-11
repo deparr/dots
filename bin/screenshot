@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+to_file="0"
+type="0"
+file=""
+
+# types 
+# 0 - fullscreen
+# 1 - window
+# 2 - selection
+
+for arg in "$@"; do
+	case $arg in
+		-f)		to_file="1";;
+		-s)		type="0";;
+		-w)		type="1";;
+		-l)		type="2";;
+	esac
+done
+
+# dont quote this, multiple select flags
+sel_type=""
+case $type in
+	0)		sel_type="";;
+	1)		sel_type="-i $(xdotool getactivewindow)";;
+	2)		sel_type="-s --highlight --color 1,1,1,0.1";;
+esac
+
+if [ $to_file == "1" ]; then
+	file="$HOME/Pictures/screenshots/screenshot_$(date +%F_%S).png"
+	[ -z "$sel_type" ] && sleep 1
+	maim -u $sel_type --format png "$file"
+	echo "$file" | xclip -selection clipboard
+else
+	[ -z "$sel_type" ] && sleep 1
+	maim -u $sel_type --format png /dev/stdout | xclip -selection clipboard -t image/png -i
+fi
+
+msg="clipboard"
+[ $to_file == "1" ] && msg=${file##*/}
+dunstify -u low -a maim -i camera "$msg" ""
+

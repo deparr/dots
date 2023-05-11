@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+#
+# ADAPTED FROM: https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+#
+
+dirs=(~/dev ~/build)
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    # find w/ depth 1, type dir, and no colors
+    #selected=$( fd -d 1 -t d -c never . ~/dev | fzf)
+    selected=$( fd -d 1 -t d -c never . ${dirs[@]} | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" /)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+if [[ -z $(tmux list-clients) ]]; then
+    exec tmux attach -t $selected_name -c $selected
+else
+    tmux switch-client -t $selected_name
+fi
+

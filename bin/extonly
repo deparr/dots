@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+xrandr --output eDP --off
+
+dunstify -a xrandr -i display 'displaying on hdmi'

@@ -1,0 +1,30 @@
+#!/usr/bin/zsh
+
+export PATH=$HOME/.local/bin:$PATH
+
+export SHELL=/usr/bin/zsh
+export XDG_CONFIG_HOME="$HOME/.config"
+#export ZDOTDIR="$HOME/.config/zsh"
+
+if hash nvim 2>/dev/null; then
+    export EDITOR=nvim
+    export MANPAGER='nvim +Man!'
+else
+    export EDITOR=vim
+fi
+export TERMINAL="alacritty"
+export TERMINAL_PROG="alacritty"
+export BROWSER="firefox"
+
+# This is probably a stupid idea?
+unset LS_COLORS
+export EXA_COLORS="ur=34:uw=34:ux=34:ue=34:gr=32:gw=32:gx=32:tr=31:tw=31:tx=31"
+
+# morhetz/gruvbox
+export FZF_DEFAULT_OPTS='--color=spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+
+# enkia/tokyonight
+#export FZF_DEFAULT_OPTS='--color=spinner:#bb9af7,hl:#7aa2f7,fg:#a9b1d6,header:#cfc9c2,info:#9ece6a,pointer:#e0af68,marker:#f7768e,fg+:#9aa5ce,prompt:#ff9e64,hl+:#f7768e'
+
+# Node version manager
+export NVM_DIR="$HOME/.config/nvm"

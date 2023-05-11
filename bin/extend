@@ -1,0 +1,13 @@
+#!/bin/sh
+
+xrandr --output eDP --primary --output HDMI-A-0 --right-of eDP
+bspc wm -a HDMI-A-0 1920x1080+0+0
+bspc wm -O eDP HDMI-A-0
+bspc monitor eDP -d I II III IV V
+bspc monitor HDMI-A-0 -d VI VII VIII IX X
+
+~/.fehbg
+
+eww kill
+eww open bar_1
+dunstify -a xrandr -i display 'extend on hdmi'
