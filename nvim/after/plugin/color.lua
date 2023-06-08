@@ -61,7 +61,7 @@ require("gruvbox").setup({
 })
 --]]
 
---[[
+---[[
 -- Default options:
 require('kanagawa').setup({
     compile = true,             -- enable compiling the colorscheme
@@ -108,6 +108,7 @@ require('kanagawa').setup({
     },
 })
 
+--[[
 require('catppuccin').setup({
     flavour = "mocha",
     transparent_background = true,
@@ -216,6 +217,30 @@ require("tokyonight").setup({
     end
 })
 
+require('bamboo').setup({
+    style = 'multiplex',
+    transparent = true,
+    ending_tildes = true,
+    cmp_itemkind_reverse = false,
+
+    code_style = {
+        comments = 'none',
+        keywords = 'none',
+        functions = 'none',
+        strings = 'none',
+        variables = 'none',
+    },
+
+    colors = {},
+    highlights = {},
+
+    diagnostics = {
+        darker = true,
+        undercul = true,
+        background = false,
+    },
+})
+
 --[[
 require("vscode").setup({
     transparent = true,
@@ -233,11 +258,12 @@ require('rose-pine').setup({
 --]]
 
 function LightItUp(color)
-	color = color or 'tokyonight'
+	color = color or 'bamboo'
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-    --vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 end
 
 LightItUp()
+
