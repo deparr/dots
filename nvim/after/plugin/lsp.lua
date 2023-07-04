@@ -10,22 +10,38 @@ lsp.ensure_installed({
     'lua_ls',
 })
 
+lsp.configure('lua-language-server', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
 
--- TODO: do tese better
+-- TODO: do these better
 --[[
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
 })
---]]
 
 -- Could also swap tese for next/prev
 --cmp_mappings['<Tab>'] = nil
 --cmp_mappings['<S-Tab>'] = nil
+
+
+lsp.setup_nvim_cmp({
+    mapping = cmp_mappings
+})
+--]]
+
+
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
@@ -61,4 +77,3 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
-

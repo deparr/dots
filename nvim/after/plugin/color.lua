@@ -1,22 +1,22 @@
 ---[[ gruvbox.nvim
 require("gruvbox").setup({
-	undercurl = true,
-	underline = true,
-	bold = false,
-	italic = {
+    undercurl = true,
+    underline = true,
+    bold = false,
+    italic = {
         strings = false,
         operators = false,
         comments = false,
     },
-	strikethrough = true,
-	invert_selection = false,
-	invert_signs = false,
-	invert_tabline = false,
-	invert_intend_guides = false,
-	inverse = true, -- invert background for search, diffs, statuslines and errors
-	contrast = "hard", -- can be "hard", "soft" or empty string
-	palette_overrides = {},
-	overrides = {
+    strikethrough = true,
+    invert_selection = false,
+    invert_signs = false,
+    invert_tabline = false,
+    invert_intend_guides = false,
+    inverse = true, -- invert background for search, diffs, statuslines and errors
+    contrast = "hard", -- can be "hard", "soft" or empty string
+    palette_overrides = {},
+    overrides = {
         -- base groups
         GruvboxOrange = { fg = '#f28534', bold = false },
         GruvboxOrangeBold = { fg = '#f28534', bold = true },
@@ -56,12 +56,26 @@ require("gruvbox").setup({
         --
 
     },
-	dim_inactive = false,
-	transparent_mode = true,
+    dim_inactive = false,
+    transparent_mode = true,
 })
 --]]
 
----[[
+require('tairiki').setup({
+    dark_variant = 'tairiki',
+    disable_background = true,
+    disable_float_background = true,
+    disable_italics = true,
+})
+
+require('bamboo').setup({
+    transparent = true,
+    ending_tildes = true
+})
+
+
+
+--[[
 -- Default options:
 require('kanagawa').setup({
     compile = true,             -- enable compiling the colorscheme
@@ -108,7 +122,6 @@ require('kanagawa').setup({
     },
 })
 
---[[
 require('catppuccin').setup({
     flavour = "mocha",
     transparent_background = true,
@@ -196,49 +209,25 @@ require("tokyonight").setup({
         }
 
         hl.DiagnosticVirtualTextError = {
-          bg = c.none,
-          fg = "#db4b4b"
+            bg = c.none,
+            fg = "#db4b4b"
         }
 
         hl.DiagnosticVirtualTextHint = {
-          bg = c.none,
-          fg = "#1abc9c"
+            bg = c.none,
+            fg = "#1abc9c"
         }
 
         hl.DiagnosticVirtualTextInfo = {
-          bg = c.none,
-          fg = "#0db9d7"
+            bg = c.none,
+            fg = "#0db9d7"
         }
 
         hl.DiagnosticVirtualTextWarn = {
-          bg = c.none,
-          fg = "#e0af68"
+            bg = c.none,
+            fg = "#e0af68"
         }
     end
-})
-
-require('bamboo').setup({
-    style = 'multiplex',
-    transparent = true,
-    ending_tildes = true,
-    cmp_itemkind_reverse = false,
-
-    code_style = {
-        comments = 'none',
-        keywords = 'none',
-        functions = 'none',
-        strings = 'none',
-        variables = 'none',
-    },
-
-    colors = {},
-    highlights = {},
-
-    diagnostics = {
-        darker = true,
-        undercul = true,
-        background = false,
-    },
 })
 
 --[[
@@ -258,12 +247,12 @@ require('rose-pine').setup({
 --]]
 
 function LightItUp(color)
-	color = color or 'tokyonight'
-	vim.cmd.colorscheme(color)
+    color = color or 'tairiki'
+    vim.cmd.colorscheme(color)
+    --require('colorbuddy').colorscheme('gruvbuddy')
 
-	vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+    --vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+    --vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 end
 
 LightItUp()
-

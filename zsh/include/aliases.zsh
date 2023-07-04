@@ -5,6 +5,7 @@ alias s='source ~/.config/zsh/zshrc'
 for c in sv shutdown poweroff reboot ; do
     alias $c="sudo $c"
 done; unset c
+alias sleep="sudo zzz"
 
 # convenience
 #alias \
@@ -22,7 +23,7 @@ alias \
     l.='exa -d -s=Name --color=auto .*' \
     diff="diff --color=auto" \
     rg="rg --color auto" \
-    bc="bc -ql"
+    bc="bc -ql" \
 
 # remaps
 alias \
