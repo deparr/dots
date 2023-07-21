@@ -21,10 +21,13 @@ unset LS_COLORS
 export EXA_COLORS="ur=34:uw=34:ux=34:ue=34:gr=32:gw=32:gx=32:tr=31:tw=31:tx=31"
 
 # morhetz/gruvbox
-export FZF_DEFAULT_OPTS='--color=spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+#export FZF_DEFAULT_OPTS='--color=spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 
 # enkia/tokyonight
 #export FZF_DEFAULT_OPTS='--color=spinner:#bb9af7,hl:#7aa2f7,fg:#a9b1d6,header:#cfc9c2,info:#9ece6a,pointer:#e0af68,marker:#f7768e,fg+:#9aa5ce,prompt:#ff9e64,hl+:#f7768e'
+
+# seoul256
+export FZF_DEFAULT_OPTS='--color fg:242,bg:233,hl:65,fg+:15,bg+:234,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168'
 
 # Node version manager
 export NVM_DIR="$HOME/.config/nvm"

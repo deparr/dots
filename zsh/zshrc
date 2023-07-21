@@ -18,7 +18,8 @@ bindkey '^ ' autosuggest-accept
 bindkey '^n' autosuggest-accept
 
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5' # purple
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8' # bright black
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # zsh stuff
@@ -36,7 +37,7 @@ export HISTSIZE=100000000
 export SAVEHIST=100000000
 
 # Language specific stuff
-# Rust?
+
 if [ -d /usr/local/go/bin/ ]; then
   export GOPATH=~/go
   export GOBIN="$GOPATH/bin"

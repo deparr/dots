@@ -36,8 +36,8 @@ fi
 
 # env set up
 export TMPDIR=/tmp # for discord rtp and prob other stuff
-#export EDITOR=nvim
 export XDG_RUNTIME_DIR=/tmp/runtime-dpar
+export XDG_CONFIG_HOME=$HOME/.config
 # for vscode setting sync
 #gnome-keyring-daemon & # Doesnt acutally work
 
@@ -46,9 +46,14 @@ setxkbmap us &
 xset r rate 400 45 & # set key repeat rate
 xset b 0 & # kill bell volume
 
+#set mouse accel -- need to check on prop number
+xinput --set-prop 10 'libinput Accel Speed' -0.55
+
 picom &
 clipit -d &
 
-xbacklight 20 &
-exec $@
+#xbacklight 20 &
+#exec $@
+#makes some dbus stuff acutally work, like discord notifs
+exec dbus-launch --sh-syntax --exit-with-session "$@"
 
