@@ -1,0 +1,24 @@
+[colors.primary]
+background = "#000000" # 333333 is actual
+foreground = "#f2f2f2"
+
+[colors.normal]
+black = "#333333"
+red = "#cc0403"
+green = "#4e9a06"
+yellow = "#c4a000"
+blue = "#3465a4"
+magenta = "#c678dd" # 75507b orig
+cyan = "#06989a"
+white = "#d3d7cf"
+
+[colors.bright]
+black = "#88807c"
+red = "#f15d22"
+green = "#73c48f"
+yellow = "#ffce51"
+blue = "#48b9c7"
+magenta = "#cb1ed1" # ad7fa8 orig
+cyan = "#34e2e2"
+white = "#eeeeee"
+
