@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+dirs=(~/Pictures/walls /usr/share/backgrounds/)
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(fd -d 3 -t f -c never . ${dirs[@]} | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+feh --no-fehbg --bg-fill "$selected"
+

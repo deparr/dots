@@ -6,5 +6,5 @@ polybar-msg cmd quit
 # launch polybar [location ~/.config/polybar/config]
 #polybar main & disown
 #polybar tray & disown
-polybar &
+polybar -r &
 
