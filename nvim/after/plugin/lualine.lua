@@ -1,4 +1,9 @@
-require('lualine').setup({
+local hasLL, lualine = pcall(require, 'lualine')
+local hasEl = pcall(require, 'el')
+if not hasLL or hasEl then
+  return
+end
+lualine.setup({
   options = {
     theme = 'auto',
     globalstatus = true,
