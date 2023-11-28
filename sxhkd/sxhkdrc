@@ -4,6 +4,9 @@ super + shift + grave
 super + Return
 	alacritty
 
+super + shift + Return
+    kitty
+
 super + r
 	rofi -show drun
 

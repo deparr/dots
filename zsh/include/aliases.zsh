@@ -46,9 +46,10 @@ alias diskspace='du -hS | sort -n -r | more'
 
 # borken keyboard aliases
 alias \
-    jit='git ' \
-    jo='go ' \
-    jcc='gcc ' \
-    j++='g++ ' \
-    ytop='htop ' \
+    jit='git' \
+    jo='go' \
+    jcc='gcc' \
+    j++='g++' \
+    ytop='htop' \
+    py='python' \
 

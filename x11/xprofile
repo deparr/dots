@@ -9,7 +9,6 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
-
 fi
 
 if [ -f $sysmodmap ]; then
@@ -18,7 +17,6 @@ fi
 
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
-
 fi
 
 if [ -f "$usermodmap" ]; then
@@ -36,8 +34,8 @@ fi
 
 # env set up
 export TMPDIR=/tmp # for discord rtp and prob other stuff
-#export EDITOR=nvim
 export XDG_RUNTIME_DIR=/tmp/runtime-dpar
+export XDG_CONFIG_DIR=$HOME/.config
 # for vscode setting sync
 #gnome-keyring-daemon & # Doesnt acutally work
 
@@ -45,10 +43,13 @@ export XDG_RUNTIME_DIR=/tmp/runtime-dpar
 setxkbmap us &
 xset r rate 400 45 & # set key repeat rate
 xset b 0 & # kill bell volume
-
+# set mouse accel to acceptable levels libinput / evdev
+#xinput --set-prop 13 'libinput Accel Speed' -0.40
+xinput --set-prop 13 'Device Accel Profile' 0 1
+xinput --set-prop 13 'Device Accel Constant Deceleration' 1.50
 picom &
 clipit -d &
 
-xbacklight 20 &
-exec $@
+#exec $@
+exec dbus-launch --sh-syntax --exit-with-session "$@"
 
