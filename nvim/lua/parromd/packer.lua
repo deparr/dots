@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
     -- QOL + NAV
     use({
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.1',
+        tag = '0.1.x',
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     })
@@ -22,15 +22,14 @@ return require('packer').startup(function(use)
     use({ 'folke/zen-mode.nvim' })
     use({ 'andweeb/presence.nvim' })
     use({ 'ellisonleao/glow.nvim' })
+    use({ 'numToStr/Comment.nvim' })
     use({ 'rcarriga/nvim-notify' })
-    --use({ 'tamago324/lir.nvim' })
     use({ 'kyazdani42/nvim-web-devicons' })
     use({ 'yamatsum/nvim-nonicons' })
+    use({ 'tjdevries/express_line.nvim', requires = { { 'nvim-lua/plenary.nvim' } } })
 
+    use({ 'tpope/vim-dadbod' })
     use ({ 'j-hui/fidget.nvim', tag = 'legacy'  })
-
-    -- requires web icons
-    use({ 'nvim-lualine/lualine.nvim' })
 
     -- LSP + TREESITTER
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -60,6 +59,7 @@ return require('packer').startup(function(use)
     })
 
     -- COLORS
+    use({ 'norcalli/nvim-colorizer.lua' })
     use({ 'ellisonleao/gruvbox.nvim' })
     use({
         'catppuccin/nvim',
@@ -81,8 +81,4 @@ return require('packer').startup(function(use)
         'tjdevries/gruvbuddy.nvim',
         requires = { 'tjdevries/colorbuddy.nvim' }
     })
-
-    -- MEME
-    use({ 'eandrju/cellular-automaton.nvim' })
-    use({ 'chrisbra/Colorizer' })
 end)
