@@ -136,7 +136,7 @@ return {
 			local cmp = require "cmp"
 			local luasnip = require "luasnip"
 			-- TODO look into what this is, copied from kickstart
-			--require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load()
 			luasnip.config.setup {}
 
 			cmp.setup {
