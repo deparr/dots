@@ -31,5 +31,18 @@ return {
 		end,
 	},
 	{ "rose-pine/neovim", name = "rose-pine" },
-	{ "shaunsingh/oxocarbon.nvim" }
+	--{ "shaunsingh/oxocarbon.nvim" }
+	{ dir = "~/dev/oxocarbon.nvim" },
+	{
+		"ribru17/bamboo.nvim",
+		config = function()
+			require("bamboo").setup {
+				ending_tiles = true,
+				diagnostics = {
+					undercurl = false
+				}
+			}
+			require("bamboo").load()
+		end
+	}
 }

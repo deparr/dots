@@ -10,7 +10,7 @@ return {
 		version = "0.1.*",
 		config = function()
 			local ts = require "telescope"
-			local icons = require "nvim-nonicons"
+			--local icons = require "nvim-nonicons"
 			ts.setup({
 				extensions = {
 					fzf = {
@@ -24,7 +24,12 @@ return {
 					--prompt_prefix = "  " .. icons.get("telescope") .. "  ",
 					selection_caret = "❯ ",
 					--entry_prefix = "   ",
-				}
+					layout_config = {
+						horizontal = {
+							prompt_position = "top",
+						}
+					}
+				},
 			})
 			ts.load_extension("fzf")
 		end,

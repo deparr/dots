@@ -1,6 +1,7 @@
 return {
 	{
 		"rcarriga/nvim-notify",
+		priority = 50,
 		dependencies = { { "yamatsum/nvim-nonicons" } },
 		config = function()
 			require("notify").setup({

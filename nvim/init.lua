@@ -17,5 +17,9 @@ require "config.autocmds"
 -- always load plugins last
 require "config.lazy"
 
-vim.cmd.colorscheme("tairiki")
+if pcall(require, "tairiki") then
+	require("tairiki").load()
+else
+	vim.cmd.colorscheme("habamax")
+end
 

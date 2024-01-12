@@ -40,15 +40,15 @@ return {
 					if desc then
 						desc = "LSP: " .. desc
 					end
-					vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc, })
+					vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc, remap = false })
 				end
 
 				nmap("K", vim.lsp.buf.hover, "hover")
 				nmap("<C-h>", vim.lsp.buf.signature_help, "signature help")
 				nmap("<leader>ld", vim.diagnostic.open_float, "open float")
 				-- TODO find decent replacements for these
-				--vim.keymap.set("n", "]d",          function() vim.diagnostic.goto_prev() end, opts)
-				--vim.keymap.set("n", "[d",          function() vim.diagnostic.goto_next() end, opts)
+				nmap("]d", vim.diagnostic.goto_prev, "prev diagnostic")
+				nmap("[d", vim.diagnostic.goto_next, "next diagnostic")
 				nmap("<leader>lrn", vim.lsp.buf.rename, "rename")
 				nmap("<leader>lca", vim.lsp.buf.code_action, "code action")
 				nmap("<leader>lf", vim.lsp.buf.format, "format")
@@ -104,7 +104,12 @@ return {
 				update_in_insert = false,
 				underline = true,
 				severity_sort = true,
-				float = { border = float_border },
+				float = {
+					header = false,
+					border = float_border,
+					focusable = true,
+				},
+				prefix = nil,
 			}
 
 			vim.lsp.handlers["textDocument/hover"] =
@@ -115,11 +120,22 @@ return {
 				vim.lsp.with(vim.lsp.handlers.signatureHelp, {
 					border = float_border
 				})
+
+			if vim.fn.executable("racket") then
+				require("lspconfig").racket_langserver.setup {
+					cmd = { "racket", "--lib", "racket-langserver" },
+					filetypes = { "racket", "scheme" },
+					--root_dir = ,
+					single_file_support = true,
+					on_attach = on_attach,
+				}
+			end
 		end
 	},
 	{
 		-- Autocompletion
 		'hrsh7th/nvim-cmp',
+		priority = 60,
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
 			'L3MON4D3/LuaSnip',
