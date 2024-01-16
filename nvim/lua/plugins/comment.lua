@@ -6,7 +6,7 @@ return {
 		config = function()
 			require("Comment").setup {
 				-- leaders in both normal and visual mode
-				opleader = { 
+				opleader = {
 					line = "gc",
 					block = "gb",
 				},
