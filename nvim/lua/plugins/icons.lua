@@ -1,3 +1,8 @@
+local settings = require "config.settings"
+if not settings.use_icons then
+	return {}
+end
+
 return {
 	{
 		"kyazdani42/nvim-web-devicons",
@@ -15,6 +20,6 @@ return {
 		lazy = true,
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
-		},
+		}
 	},
 }

@@ -22,6 +22,7 @@ vim.opt.errorbells = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
+-- TODO find a better way to set this cross platform
 vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.opt.undofile = true
 

@@ -17,9 +17,14 @@ require "config.autocmds"
 -- always load plugins last
 require "config.lazy"
 
+--[[
+-- I dont even like my own colorscheme lmao, use bamboo for now
 if pcall(require, "tairiki") then
 	require("tairiki").load()
 else
 	vim.cmd.colorscheme("habamax")
 end
+--]]
+
+vim.cmd.colorscheme "bamboo"
 

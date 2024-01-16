@@ -35,7 +35,7 @@ return {
 			-- 'folke/neodev.nvim',
 		},
 		config = function()
-			local on_attach = function(_, bufnr)
+			local on_attach = function(client, bufnr)
 				local nmap = function(keys, func, desc)
 					if desc then
 						desc = "LSP: " .. desc
@@ -43,12 +43,15 @@ return {
 					vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc, remap = false })
 				end
 
+				-- disable all semantic tokens
+				client.server_capabilities.semanticTokensProvider = nil
+
 				nmap("K", vim.lsp.buf.hover, "hover")
 				nmap("<C-h>", vim.lsp.buf.signature_help, "signature help")
 				nmap("<leader>ld", vim.diagnostic.open_float, "open float")
 				-- TODO find decent replacements for these
-				nmap("]d", vim.diagnostic.goto_prev, "prev diagnostic")
-				nmap("[d", vim.diagnostic.goto_next, "next diagnostic")
+				nmap("]d", vim.diagnostic.goto_prev, "prev diag")
+				nmap("[d", vim.diagnostic.goto_next, "next diag")
 				nmap("<leader>lrn", vim.lsp.buf.rename, "rename")
 				nmap("<leader>lca", vim.lsp.buf.code_action, "code action")
 				nmap("<leader>lf", vim.lsp.buf.format, "format")
@@ -65,7 +68,16 @@ return {
 			require("mason-lspconfig").setup()
 
 			local servers = {
-				rust_analyzer = {},
+				rust_analyzer = {
+					cargo = {
+						allFeatures = true
+					},
+					imports = {
+						group = {
+							enable = true
+						}
+					}
+				},
 				gopls = {},
 				lua_ls = {
 					Lua = {
@@ -105,8 +117,8 @@ return {
 				underline = true,
 				severity_sort = true,
 				float = {
-					header = false,
 					border = float_border,
+					header = false,
 					focusable = true,
 				},
 				prefix = nil,
@@ -145,14 +157,16 @@ return {
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
 
-			-- Adds a number of user-friendly snippets
-			'rafamadriz/friendly-snippets',
+
+			-- dont snippets for now
+			--'rafamadriz/friendly-snippets',
 		},
 		config = function()
 			local cmp = require "cmp"
 			local luasnip = require "luasnip"
-			-- TODO look into what this is, copied from kickstart
-			require("luasnip.loaders.from_vscode").lazy_load()
+
+			-- want as few snippets as possible
+			--require("luasnip.loaders.from_vscode").lazy_load()
 			luasnip.config.setup {}
 
 			cmp.setup {
@@ -174,11 +188,20 @@ return {
 						behavior = cmp.ConfirmBehavior.Insert,
 						select = true,
 					},
+					-- <C-Space> is unmappable on windows
+					['<C-y>'] = cmp.mapping.confirm {
+						behavior = cmp.ConfirmBehavior.Insert,
+						select = true,
+					},
 				},
-				sources = {
+				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
+				}, {
 					{ name = "path" },
+					{ name = "buffer" },
+				}),
+				experimental = {
+					ghost_text = true
 				}
 			}
 		end

@@ -2,8 +2,8 @@ return {
 	{
 		dir = "~/dev/tairiki.nvim",
 		priority = 1000,
-		opts = function()
-			return {
+		config = function()
+			require("tairiki").setup {
 				style = "dark",
 				transparent = false,
 				ending_tiles = true,
@@ -16,7 +16,6 @@ return {
 					NotifyBackground = { bg = "#000000" },
 					["@lsp.typemod.operator.controlFlow.rust"] = { link = "Special" },
 				}
-
 			}
 		end,
 	},
@@ -30,19 +29,45 @@ return {
 			}
 		end,
 	},
-	{ "rose-pine/neovim", name = "rose-pine" },
-	--{ "shaunsingh/oxocarbon.nvim" }
-	{ dir = "~/dev/oxocarbon.nvim" },
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			require("rose-pine").setup {
+				styles = {
+					italic = false,
+					bold = true,
+				}
+			}
+		end
+	},
+	{ "shaunsingh/oxocarbon.nvim" },
 	{
 		"ribru17/bamboo.nvim",
 		config = function()
 			require("bamboo").setup {
-				ending_tiles = true,
+				style = "multiplex",
+				ending_tidles = true,
 				diagnostics = {
 					undercurl = false
+				},
+				highlights = {
+					StatusLine = { bg = "#202020" }
+				},
+				colors = {
+					bg0 = "#151515"
+				},
+				code_style = {
+					comments = "none",
+					conditionals = "none",
+					keywords = "none",
+					functions = "none",
+					namespaces = "none",
+					parameters = "none",
+					strings = "none",
+					variables = "none",
 				}
 			}
-			require("bamboo").load()
 		end
 	}
 }

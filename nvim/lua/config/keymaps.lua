@@ -39,6 +39,7 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "q:", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
+-- need to rethink these
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>zz")
 
