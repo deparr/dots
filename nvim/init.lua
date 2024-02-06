@@ -26,5 +26,6 @@ else
 end
 --]]
 
-vim.cmd.colorscheme "bamboo"
+-- vim.cmd.colorscheme "bamboo"
+vim.cmd.colorscheme "slim"
 

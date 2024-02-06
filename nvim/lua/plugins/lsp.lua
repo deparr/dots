@@ -15,7 +15,7 @@ return {
 				opts = {
 					progress = {
 						display = {
-							progress_icon = { pattern = "dots", period = 1 },
+							progress_icon = { pattern = "moon", period = 1 },
 						},
 					},
 					notification = {
@@ -32,7 +32,7 @@ return {
 			},
 
 			-- Additional lua configuration, makes nvim stuff amazing!
-			-- 'folke/neodev.nvim',
+			{ 'folke/neodev.nvim' },
 		},
 		config = function()
 			local on_attach = function(client, bufnr)
@@ -44,7 +44,7 @@ return {
 				end
 
 				-- disable all semantic tokens
-				client.server_capabilities.semanticTokensProvider = nil
+				-- client.server_capabilities.semanticTokensProvider = nil
 
 				nmap("K", vim.lsp.buf.hover, "hover")
 				nmap("<C-h>", vim.lsp.buf.signature_help, "signature help")
@@ -58,9 +58,9 @@ return {
 				nmap("<leader>lws", vim.lsp.buf.workspace_symbol, "workspace symbol")
 				--nmap("<leader>lds", vim.lsp.buf.document_symbol, "document symbol")
 
-				nmap("gd", require("telescope.builtin").lsp_definitions, "go definition")
-				nmap("gr", require("telescope.builtin").lsp_references, "go references")
-				nmap("gI", require("telescope.builtin").lsp_implementations, "go implementations")
+				nmap("gd", vim.lsp.buf.definition, "go definition")
+				nmap("gr", vim.lsp.buf.reference, "go references")
+				nmap("gI", vim.lsp.buf.implementation, "go implementations")
 			end
 
 			require("lspconfig.ui.windows").default_options.border = "rounded"
@@ -120,6 +120,7 @@ return {
 					border = float_border,
 					header = false,
 					focusable = true,
+					prefix = ""
 				},
 				prefix = nil,
 			}
@@ -142,6 +143,12 @@ return {
 					on_attach = on_attach,
 				}
 			end
+
+			require("lspconfig").ocamllsp.setup {
+				cmd = { "ocamllsp", "--stdio" },
+				filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+				on_attach = on_attach
+			}
 		end
 	},
 	{

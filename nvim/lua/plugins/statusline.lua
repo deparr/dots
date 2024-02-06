@@ -38,14 +38,6 @@ return {
 			  return extensions.git_changes(window, buffer)
 			end)
 
-			local show_current_func = function(window, buffer)
-			  if buffer.filetype == "lua" then
-				return ""
-			  end
-
-			  return lsp_status.current_function(window, buffer)
-			end
-
 			local diagnostic_display = diagnostic.make_buffer()
 
 			require("el").setup {
@@ -62,7 +54,6 @@ return {
 				  { sections.collapse_builtin { { " " }, { builtin.modified_flag } } },
 				  { sections.split },
 				  { diagnostic_display },
-				  { show_current_func },
 				  { git_changes },
 				  { " [" },
 				  { builtin.line_with_width(2) },

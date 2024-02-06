@@ -1,0 +1,28 @@
+--[[
+return {
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			vim.list_extend(opts, {
+				"rust_analyzer",
+				"gopls",
+				"lua_ls",
+			})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			servers = {
+				lua_ls = {
+					settings = {
+					}
+				}
+			}
+		},
+	},
+	{ "williamboman/mason-lspconfig.nvim", lazy = true },
+	{ "j-hui/fidget.nvim", branch = "legacy" },
+}
+--]]
+return {}

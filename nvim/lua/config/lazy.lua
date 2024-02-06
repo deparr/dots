@@ -8,8 +8,12 @@ require("lazy").setup("plugins", {
 		lazy = false,
 	},
 	change_detection = {
-		enabled = false,
-		notify = false,
+		enabled = true,
+		notify = true,
+	},
+	dev = {
+		path = "~/dev",
+		patterns = { "deparr" },
 	},
 	install = { colorscheme = { "tairiki", "habamax" } }
 })
