@@ -47,7 +47,8 @@ return {
 				-- client.server_capabilities.semanticTokensProvider = nil
 
 				nmap("K", vim.lsp.buf.hover, "hover")
-				nmap("<C-h>", vim.lsp.buf.signature_help, "signature help")
+				-- TODO find out what this even is, prob just func sig help but it's never worked ???
+				--nmap("<C-h>", vim.lsp.buf.signature_help, "signature help")
 				nmap("<leader>ld", vim.diagnostic.open_float, "open float")
 				-- TODO find decent replacements for these
 				nmap("]d", vim.diagnostic.goto_prev, "prev diag")

@@ -18,7 +18,6 @@ require "config.autocmds"
 require "config.lazy"
 
 --[[
--- I dont even like my own colorscheme lmao, use bamboo for now
 if pcall(require, "tairiki") then
 	require("tairiki").load()
 else
