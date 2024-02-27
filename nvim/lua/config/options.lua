@@ -1,9 +1,10 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.opt.guicursor = ""
 vim.opt.updatetime = 50
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.wo.nu = true
+vim.wo.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 8
@@ -13,6 +14,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.smartindent = true
+vim.opt.breakindent = true
 vim.opt.wrap = false
 
 vim.opt.splitright = true
@@ -32,6 +34,8 @@ end
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 vim.opt.isfname:append("@-@")
