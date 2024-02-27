@@ -18,15 +18,28 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
+-- TODO: this is for laptop, remove sometime
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "<Left>", "gT")
 vim.keymap.set("n", "<Right>", "gt")
+
 vim.api.nvim_set_keymap('n', '<A-,>', '<C-W>5<', { noremap = true })
 vim.api.nvim_set_keymap('n', '<A-.>', '<C-W>5>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<A-->', '<C-W>5-', { noremap = true })
 vim.api.nvim_set_keymap('n', '<A-=>', '<C-W>5+', { noremap = true })
 
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true })
+
+-- term
+vim.keymap.set("t", "<Esc><Esc>", "<C-/><C-n>")
+vim.keymap.set("t", "<M-h>", "<C-/><C-n><C-W>h")
+vim.keymap.set("t", "<M-j>", "<C-/><C-n><C-W>j")
+vim.keymap.set("t", "<M-k>", "<C-/><C-n><C-W>k")
+vim.keymap.set("t", "<M-l>", "<C-/><C-n><C-W>l")
 
 vim.keymap.set("n", "<Down>", "<nop>")
 vim.keymap.set("n", "<Up>", "<nop>")
@@ -45,7 +58,4 @@ vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>silent !chmod +x %<CR>", { silent = true })
-
---vim.keymap.set("n", "<leader>vpp", [[<cmd>e ~/.config/nvim/lua/parromd/packer.lua<CR>]])
-vim.keymap.set("n", "<leader>h", "<cmd>TSHighlightCapturesUnderCursor<CR>")
 

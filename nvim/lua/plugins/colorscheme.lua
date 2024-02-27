@@ -1,5 +1,10 @@
 return {
 	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = { }
+	},
+	{
 		dir = "~/dev/tairiki.nvim",
 		priority = 1000,
 		config = function()
@@ -64,7 +69,7 @@ return {
 		opts = function()
 			return {
 				style = "night",
-				terminal_colors = true,
+				terminal_colors = false,
 				transparent = false,
 			}
 		end,
@@ -82,27 +87,6 @@ return {
 		end
 	},
 	{ "shaunsingh/oxocarbon.nvim" },
-	{
-		"blazkowolf/gruber-darker.nvim",
-		config = function()
-			require("gruber-darker").setup {
-				bold = true,
-				invert = {
-					signs = false,
-					tabline = false,
-					visual = false,
-				},
-				italic = {
-					strings = false,
-					comments = false,
-					operators = false,
-					folds = true,
-				},
-				undercurl = false,
-				underline = true,
-			}
-		end
-	},
 	{
 		"ribru17/bamboo.nvim",
 		config = function()

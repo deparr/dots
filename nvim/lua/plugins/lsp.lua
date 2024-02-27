@@ -78,7 +78,8 @@ return {
 						}
 					}
 				},
-				gopls = {},
+				-- TODO: dont use mason
+				-- gopls = {},
 				lua_ls = {
 					Lua = {
 						workspace = { checkThirdParty = false },
@@ -149,10 +150,19 @@ return {
 				filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
 				on_attach = on_attach
 			}
+
+			require("lspconfig").gopls.setup {
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_dir = require("lspconfig.util").root_pattern("go.work", "go.mod", ".git"),
+				single_file_support = true,
+				on_attach = on_attach,
+			}
 		end
 	},
 	{
 		-- Autocompletion
+		-- TODO: redo cmp config
 		'hrsh7th/nvim-cmp',
 		priority = 60,
 		dependencies = {

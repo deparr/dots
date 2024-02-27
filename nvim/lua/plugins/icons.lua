@@ -1,4 +1,5 @@
 local settings = require "config.settings"
+-- TODO: use lazy.enable or whatever for this
 if not settings.use_icons then
 	return {}
 end

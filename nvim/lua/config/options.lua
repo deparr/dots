@@ -26,6 +26,10 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.opt.undofile = true
 
+if require("config.settings").is_windows then
+	vim.opt.shell = "pwsh.exe"
+end
+
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
