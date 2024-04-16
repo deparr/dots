@@ -1,8 +1,6 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		--build = ":TSUpdate",
-		-- dont know if this needs to be lazy
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter.configs").setup {
@@ -29,9 +27,5 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 		event = { "BufReadPost", "BufNewFile" },
 	},
-	--[[
-	{
-		"nvim-treesitter/playground",
-	},
-	--]]
 }
+

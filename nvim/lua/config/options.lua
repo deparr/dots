@@ -30,6 +30,11 @@ vim.opt.undofile = true
 
 if require("config.settings").is_windows then
 	vim.opt.shell = "pwsh.exe"
+	vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["
+	vim.opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+	vim.opt.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+	vim.opt.shellquote = ""
+	vim.opt.shellxquote = ""
 end
 
 vim.opt.hlsearch = false
