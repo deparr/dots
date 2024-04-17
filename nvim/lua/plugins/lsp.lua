@@ -3,15 +3,15 @@ local float_border = require("config.settings").float_border_style
 return {
 	{
 		-- LSP Configuration & Plugins
-		'neovim/nvim-lspconfig',
+		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
-			'williamboman/mason.nvim',
-			'williamboman/mason-lspconfig.nvim',
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
 
 			-- Useful status updates for LSP
 			{
-				'j-hui/fidget.nvim',
+				"j-hui/fidget.nvim",
 				opts = {
 					progress = {
 						display = {
@@ -32,7 +32,7 @@ return {
 			},
 
 			-- Additional lua configuration, makes nvim stuff amazing!
-			{ 'folke/neodev.nvim' },
+			{ "folke/neodev.nvim" },
 		},
 		config = function()
 			local on_attach = function(client, bufnr)
@@ -71,48 +71,52 @@ return {
 			local servers = {
 				rust_analyzer = {
 					cargo = {
-						allFeatures = true
+						allFeatures = true,
 					},
 					imports = {
 						group = {
-							enable = true
-						}
-					}
+							enable = true,
+						},
+					},
 				},
 				-- TODO: dont use mason
 				-- gopls = {},
 				lua_ls = {
 					Lua = {
-						workspace = { checkThirdParty = false },
-						diagnostics = {
-							globals = { "vim" }
+						runtime = { version = "LuaJIT" },
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								"${3rd}/luv/library",
+								unpack(vim.api.nvim_get_runtime_file("", true)),
+							},
 						},
-						telemetry = { enable = false }
-					}
-				}
+						telemetry = { enable = false },
+					},
+				},
 			}
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-			local mason_lspconfig = require "mason-lspconfig"
-			mason_lspconfig.setup {
-				ensure_installed = vim.tbl_keys(servers)
-			}
+			local mason_lspconfig = require("mason-lspconfig")
+			mason_lspconfig.setup({
+				ensure_installed = vim.tbl_keys(servers),
+			})
 
-			mason_lspconfig.setup_handlers {
+			mason_lspconfig.setup_handlers({
 				function(server_name)
-					require("lspconfig")[server_name].setup {
+					require("lspconfig")[server_name].setup({
 						capabilities = capabilities,
 						on_attach = on_attach,
 						settings = servers[server_name],
 						filetypes = (servers[server_name] or {}).filetypes,
-					}
+					})
 				end,
 				-- TODO look into specific setup fror each server.
-			}
+			})
 
-			vim.diagnostic.config {
+			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
 				update_in_insert = false,
@@ -120,74 +124,83 @@ return {
 				severity_sort = true,
 				float = {
 					border = float_border,
-					header = false,
 					focusable = true,
-					prefix = ""
+					header = "",
+					prefix = "",
 				},
 				prefix = nil,
-			}
+			})
 
-			vim.lsp.handlers["textDocument/hover"] =
-				vim.lsp.with(vim.lsp.handlers.hover, {
-					border = float_border
-				})
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = float_border,
+			})
 			vim.lsp.handlers["textDocument/signatureHelp"] =
-				vim.lsp.with(vim.lsp.handlers.signatureHelp, {
-					border = float_border
-				})
+				vim.lsp.with(vim.lsp.handlers.signatureHelp, { border = float_border })
 
 			if vim.fn.executable("racket") then
-				require("lspconfig").racket_langserver.setup {
+				require("lspconfig").racket_langserver.setup({
 					cmd = { "racket", "--lib", "racket-langserver" },
 					filetypes = { "racket", "scheme" },
 					--root_dir = ,
 					single_file_support = true,
-					on_attach = on_attach,
-				}
+					on_attach = function()
+						vim.cmd([[iabbrev lambda λ]])
+						on_attach()
+					end,
+				})
 			end
 
-			require("lspconfig").ocamllsp.setup {
+			require("lspconfig").ocamllsp.setup({
 				cmd = { "ocamllsp", "--stdio" },
 				filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
-				on_attach = on_attach
-			}
+				on_attach = on_attach,
+			})
 
-			require("lspconfig").gopls.setup {
+			require("lspconfig").gopls.setup({
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
 				root_dir = require("lspconfig.util").root_pattern("go.work", "go.mod", ".git"),
 				single_file_support = true,
 				on_attach = on_attach,
-			}
-		end
+			})
+		end,
+	},
+	{
+		-- formatting
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				go = { "goimports", "gofmt" },
+			},
+		},
 	},
 	{
 		-- Autocompletion
 		-- TODO: redo cmp config
-		'hrsh7th/nvim-cmp',
+		"hrsh7th/nvim-cmp",
 		priority = 60,
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
-			'L3MON4D3/LuaSnip',
-			'saadparwaiz1/cmp_luasnip',
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
 
 			-- Adds LSP completion capabilities
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-path',
-
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
 
 			-- dont snippets for now
 			--'rafamadriz/friendly-snippets',
 		},
 		config = function()
-			local cmp = require "cmp"
-			local luasnip = require "luasnip"
+			local cmp = require("cmp")
+			local luasnip = require("luasnip")
 
 			-- want as few snippets as possible
 			--require("luasnip.loaders.from_vscode").lazy_load()
-			luasnip.config.setup {}
+			luasnip.config.setup({})
 
-			cmp.setup {
+			cmp.setup({
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -196,32 +209,34 @@ return {
 				completion = {
 					completeopt = "menu,menuone,noinsert",
 				},
-				mapping = cmp.mapping.preset.insert {
-					['<C-n>'] = cmp.mapping.select_next_item(),
-					['<C-p>'] = cmp.mapping.select_prev_item(),
-					['<C-b>'] = cmp.mapping.scroll_docs(-4),
-					['<C-f>'] = cmp.mapping.scroll_docs(4),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<C-Space>'] = cmp.mapping.confirm {
-						behavior = cmp.ConfirmBehavior.Insert,
-						select = true,
-					},
-					-- <C-Space> is unmappable on windows
-					['<C-y>'] = cmp.mapping.confirm {
-						behavior = cmp.ConfirmBehavior.Insert,
-						select = true,
-					},
-				},
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-				}, {
-					{ name = "path" },
-					{ name = "buffer" },
+				mapping = cmp.mapping.preset.insert({
+					["<C-n>"] = cmp.mapping.select_next_item(),
+					["<C-p>"] = cmp.mapping.select_prev_item(),
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<C-Space>"] = cmp.mapping.complete({}),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<C-l>"] = cmp.mapping(function()
+						if luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
+						end
+					end, { "i", "s" }),
+					["<C-h>"] = cmp.mapping(function()
+						if luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						end
+					end, { "i", "s" }),
 				}),
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "path" },
+				},
 				experimental = {
-					ghost_text = true
-				}
-			}
-		end
+					ghost_text = true,
+				},
+			})
+		end,
 	},
 }

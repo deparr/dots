@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "VeryLazy" },
 		config = function()
 			require("nvim-treesitter.configs").setup {
 				ensure_installed = {
@@ -25,7 +25,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "VeryLazy" },
 	},
 }
 
