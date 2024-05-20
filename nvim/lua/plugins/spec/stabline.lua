@@ -1,9 +1,9 @@
 return {
-	{
-		"crispgm/nvim-tabline",
-		config = true
-	},
-	--[[
+  {
+    "crispgm/nvim-tabline",
+    config = true,
+  },
+  --[[
 	{
 		"tjdevries/expressline.nvim",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
@@ -88,4 +88,3 @@ return {
 	},
 	--]]
 }
-
