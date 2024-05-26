@@ -16,9 +16,6 @@ return {
         highlight = {
           enable = true,
         },
-        indent = {
-          enable = true,
-        },
       }
       if require("compat").is_windows then
         require("nvim-treesitter.install").compilers = { "zig", "gcc" }

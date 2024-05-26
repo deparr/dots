@@ -7,6 +7,7 @@ return {
   {
     "deparr/tairiki.nvim",
     dev = false,
+    branch = "minimal",
     priority = 1000,
     config = function()
       require("tairiki").setup {
@@ -20,35 +21,34 @@ return {
         },
         colors = {
           zero_black = "#000000",
+          lua_blue = "#618aae",
+          seagreen = "#99cc99",
         },
         highlights = {
-          ["NotifyBackground"] = { bg = "$zero_black" },
-          ["NormalFloat"] = { bg = "$zero_black" },
-          ["ModeMsg"] = { fg = "$fg" },
+          -- ["NotifyBackground"] = { bg = "$zero_black" },
+          -- ["NormalFloat"] = { bg = "$zero_black" },
           ["CursorLineNr"] = { fg = "$fg", bold = true },
           ["CursorLine"] = { bg = "$bg0" },
-          ["FloatTitle"] = { bg = "$zero_black" },
-          ["FloatBorder"] = { fg = "$zero_black", bg = "$zero_black" },
-          ["FloatShadow"] = { fg = "$zero_black", bg = "$zero_black" },
-          ["FloatShadowThrough"] = { fg = "$zero_black", bg = "$zero_black" },
-          ["LspInfoBorder"] = { link = "FloatBorder" },
-          ["LspInfoFloat"] = { link = "NormalFloat" },
-
-          ["Conditional"] = { fg = "$red" },
-          ["@keyword.conditional"] = { link = "Conditional" },
-
+          -- ["FloatTitle"] = { bg = "$zero_black" },
+          -- ["FloatBorder"] = { fg = "$zero_black", bg = "$zero_black" },
+          -- ["FloatShadow"] = { fg = "$zero_black", bg = "$zero_black" },
+          -- ["FloatShadowThrough"] = { fg = "$zero_black", bg = "$zero_black" },
+          -- ["LspInfoBorder"] = { link = "FloatBorder" },
+          -- ["LspInfoFloat"] = { link = "NormalFloat" },
+          --
           ["@lsp.typemod.operator.controlFlow.rust"] = { link = "Special" },
           ["@lsp.typemod.parameter"] = { fmt = "italic" },
           ["@lsp.type.parameter"] = { fmt = "italic" },
-          ["@parameter"] = { link = "Identifier" },
-          ["@macro"] = { link = "Macro" },
-          -- ["@field"] = { link = "Normal" }, -- TODO: play with these a little more
-          -- ["@operator"] = { fg = "$purple" },
+          -- -- ["@field"] = { link = "Normal" }, -- TODO: play with these a little more
+          -- -- ["@operator"] = { fg = "$purple" },
 
           ["TreesitterContext"] = { bg = "$bg1" },
           ["TreesitterContextLineNumber"] = { fg = "$blue", bg = "$bg1" },
 
-          ["@string.special.url.gdscript"] = { fg = "$red", underline = true },
+          ["@string.special.url.gdscript"] = { fg = "$seagreen" },
+          ["@operator.gleam"] = { fg = "$light_purple" },
+          -- ["@function.lua"] = { fg = "$lua_blue" },
+          -- ["@function.builtin.lua"] = { fg = "$lua_blue" },
         },
         toggle_style_key = "<leader>cs",
         toggle_style_list = { "dark", "light" },

@@ -16,13 +16,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins.spec", {
-  defaults = {
-    lazy = false,
-  },
-  change_detection = {
-    enabled = true,
-    notify = true,
-  },
+  defaults = { lazy = false },
+  change_detection = { enabled = true, notify = false },
   dev = {
     path = "~/dev",
     patterns = { "deparr" },

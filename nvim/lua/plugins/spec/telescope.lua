@@ -34,6 +34,7 @@ return {
     keys = function()
       local builtin = require "telescope.builtin"
       return {
+        { "<leader>fr", builtin.resume },
         { "<leader>ff", builtin.find_files },
         { "<leader>fg", builtin.git_files },
         { "<leader>fl", builtin.live_grep },
