@@ -4,7 +4,7 @@ return {
     -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
     dependencies = {
-      "folke/neodev.nvim",
+      -- "folke/neodev.nvim",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -18,15 +18,19 @@ return {
           },
         },
       },
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+      }
     },
     config = function()
-      require("neodev").setup()
+      -- require("neodev").setup()
 
       require("conform").setup {
         formatters_by_ft = {
           lua = { "stylua" },
           go = { "goimports", "gofmt" },
-          python = { "ruff_fix", "ruff_format" }
+          python = { "ruff_fix", "ruff_format" },
         },
       }
 
@@ -49,6 +53,9 @@ return {
           },
         },
         pylsp = true,
+        gleam = {
+          manual_install = true,
+        },
         lua_ls = true,
         -- tsserver = true,
         vtsls = true,

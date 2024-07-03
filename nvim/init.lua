@@ -24,4 +24,4 @@ require("lazy").setup("plugins.spec", {
   },
 })
 
-vim.cmd.colorscheme "tairiki"
+vim.cmd.colorscheme "cold"

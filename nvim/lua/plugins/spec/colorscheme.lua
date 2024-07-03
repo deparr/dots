@@ -96,23 +96,16 @@ return {
     end,
   },
   {
-    "HoNamDuong/hybrid.nvim",
-    opts = {
-      terminal_colors = false,
-      undercurl = false,
-      underline = true,
-      bold = true,
-      italic = {
-        strings = false,
-        emphasis = true,
-        comments = true,
-        folds = true,
-      },
-      strikethrough = true,
-      inverse = true,
-      transparent = false,
-      overrides = function(highlights, colors) end,
-    },
+    "tjdevries/colorbuddy.nvim",
+  },
+  {
+    "Yazeed1s/minimal.nvim",
+  },
+  {
+    "jaredgorski/SpaceCamp",
+  },
+  {
+    dir = "~/dev/mountain.nvim/",
   },
   {
     "folke/tokyonight.nvim",
@@ -146,6 +139,43 @@ return {
   },
   { "shaunsingh/oxocarbon.nvim" },
   {
+    "gmr458/cold.nvim",
+    config = function()
+      require("cold").setup {
+        transparent_background = true,
+        undercurl = false,
+      }
+      -- vim.api.nvim_set_hl(0, "Normal", { bg = "#151515" })
+      -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "#151515" })
+      -- vim.api.nvim_set_hl(0, "LineNr", { bg = "#151515" })
+      -- vim.api.nvim_set_hl(0, "LineNrBelow", { bg = "#151515" })
+      -- vim.api.nvim_set_hl(0, "LineNrAbove", { bg = "#151515" })
+      -- error = "#984936",
+      -- warning = "#ab8550",
+      -- info = "#ab8550",
+      -- hint = "#576f82",
+      vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#576f82" })
+      vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#ab8550" })
+      vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#ab8550" })
+      vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#984936" })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = false, underline = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = false, underline = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = false, underline = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = false, underline = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#585858", undercurl = false, underline = true })
+    end,
+  },
+  {
+    "aktersnurra/no-clown-fiesta.nvim",
+    config = function()
+      require("no-clown-fiesta").setup {
+        -- styles = {
+        --   lsp = { underline = false }
+        -- }
+      }
+    end,
+  },
+  {
     "ribru17/bamboo.nvim",
     config = function()
       require("bamboo").setup {
@@ -157,6 +187,9 @@ return {
         highlights = {
           StatusLine = { bg = "#202020" },
           Normal = { bg = "#151515" },
+          NormalFloat = { bg = "#000000" },
+          Float = { bg = "#000000" },
+          NormalNC = { bg = "#151515" },
           ["@type.builtin"] = { fg = "$coral" },
         },
         colors = {
