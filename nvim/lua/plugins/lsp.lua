@@ -14,14 +14,23 @@ return {
         opts = {
           notification = {
             override_vim_notify = true,
-            window = { winblend = 0, relative = "editor" },
+            window = {
+              winblend = 0,
+              relative = "editor",
+              normal_hl = "DiagnosticInfo",
+            },
+          },
+          progress = {
+            display = {
+              icon_style = "String",
+            },
           },
         },
       },
       {
         "folke/lazydev.nvim",
         ft = "lua",
-      }
+      },
     },
     config = function()
       -- require("neodev").setup()
@@ -108,6 +117,8 @@ return {
 
       local disable_semantic_tokens = {
         lua = true,
+        zig = true,
+        -- rust = true,
       }
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -117,8 +128,6 @@ return {
 
           vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
           vim.keymap.set("n", "K", vim.lsp.buf.hover) -- set by default
-          vim.keymap.set("n", "]d", vim.diagnostic.goto_prev) -- set by default
-          vim.keymap.set("n", "[d", vim.diagnostic.goto_next) -- set by default
           vim.keymap.set("n", "gd", vim.lsp.buf.definition)
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
           vim.keymap.set("n", "gr", vim.lsp.buf.references)

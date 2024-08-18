@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.loader.enable()
+
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
@@ -15,13 +17,17 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins.spec", {
+require("lazy").setup("plugins", {
   defaults = { lazy = false },
   change_detection = { enabled = true, notify = false },
+  install = {
+    colorscheme = { "base16-gruvbox-dark-hard", "tairiki", "carbonfox", "habamax" },
+  },
+
   dev = {
     path = "~/dev",
     patterns = { "deparr" },
   },
 })
 
-vim.cmd.colorscheme "cold"
+vim.cmd.colorscheme "base16-gruvbox-dark-hard"

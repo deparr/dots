@@ -8,7 +8,11 @@ opt.relativenumber = true
 
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
-opt.scrolloff = 8
+opt.scrolloff = 6
+
+opt.foldenable = false
+opt.foldmethod = 'manual'
+opt.foldlevelstart = 99
 
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -26,6 +30,10 @@ opt.swapfile = false
 opt.backup = false
 opt.undodir = vim.fn.stdpath "data" .. "/undodir"
 opt.undofile = true
+
+opt.foldenable = false
+opt.foldmethod = 'manual'
+opt.foldlevelstart = 99
 
 if require("compat").is_windows then
   opt.shell = "pwsh"

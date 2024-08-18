@@ -14,7 +14,7 @@ return {
       "hrsh7th/cmp-path",
 
       -- kind icon formatting
-      "onsails/lspkind.nvim",
+      -- "onsails/lspkind.nvim",
 
       -- dont snippets for now
       --'rafamadriz/friendly-snippets',
@@ -22,7 +22,7 @@ return {
     config = function()
       local cmp = require "cmp"
       local luasnip = require "luasnip"
-      local lspkind = require "lspkind"
+      -- local lspkind = require "lspkind"
 
       -- want as few snippets as possible
       --require("luasnip.loaders.from_vscode").lazy_load()
@@ -56,7 +56,7 @@ return {
             end
           end, { "i", "s" }),
         },
-        sources = {
+        sources = cmp.config.sources {
           { name = "nvim_lsp" },
           { name = "lazydev", group_index = 0 },
           { name = "luasnip" },
@@ -64,19 +64,6 @@ return {
         },
         experimental = {
           ghost_text = true,
-        },
-        formatting = {
-          format = lspkind.cmp_format {
-            mode = "symbol_text",
-            menu = {
-              buffer = "[buf]",
-              nvim_lsp = "[LSP]",
-              nvim_lua = "[api]",
-              path = "[path]",
-              luasnip = "[snip]",
-              eruby = "[erb]",
-            },
-          },
         },
       }
     end,
