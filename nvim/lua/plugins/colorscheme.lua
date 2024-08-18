@@ -3,7 +3,7 @@ return {
     "deparr/tairiki.nvim",
     dev = false,
     branch = "minimal",
-    priority = 1000,
+    -- priority = 1000,
     config = function()
       require("tairiki").setup {
         style = "dark",
@@ -60,6 +60,7 @@ return {
   { "EdenEast/nightfox.nvim" },
   {
     "wincent/base16-nvim",
+    priority = 1000,
     config = function()
       local overwrite_gruv = function()
         local hl = function(group, opts)
@@ -145,11 +146,11 @@ return {
         hl("TelescopeSelectionCaret", { fg = "#d65d0e", bg = "#282828" })
         hl("TelescopeBorder", { fg = "#928374" })
 
-        hl("GitGraphHash", { link = "Constant" })
-        hl("GitGraphTimestamp", { link = "Special" })
-        hl("GitGraphBranchMsg", { link = "String" })
-        hl("GitGraphAuthor", { link = "Function" })
-        hl("GitGraphBranchName", { link = "Tag" })
+        hl("GitGraphHash", { link = "Identifier" })
+        hl("GitGraphTimestamp", { link = "SpecialChar" })
+        hl("GitGraphBranchMsg", {})
+        hl("GitGraphAuthor", { link = "String" })
+        hl("GitGraphBranchName", { link = "gitCommitBranch" })
       end
 
       vim.api.nvim_create_autocmd({ "ColorScheme" }, {
