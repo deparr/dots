@@ -50,6 +50,56 @@ return {
       }
     end,
   },
+  {
+    "ferdinandrau/lavish.nvim",
+    opts = {
+      palette_overrides = {
+        dark = {
+          base = {
+            black = "#000000",
+          },
+          normal = {
+            orange = "#e78c45",
+          },
+          bold = {
+            orange = "#de935f",
+          },
+        },
+      },
+      scheme_overrides = function(c, s)
+        return {
+          Bold = { bold = true },
+          Character = { fg = c.normal.red },
+          Constant = { fg = c.normal.orange, bold = false },
+          Number = { fg = c.normal.orange },
+          SpecialChar = { fg = c.normal.red },
+
+          DiagnosticOk = { fg = c.bold.green },
+          DiagnosticUnderlineOk = { sp = c.bold.green, underline = true },
+          DiagnosticUnderlineInfo = { sp = c.bold.blue, underline = true },
+          DiagnosticUnderlineHint = { sp = c.bold.green, underline = true },
+          DiagnosticUnderlineWarn = { sp = c.bold.yellow, underline = true },
+          DiagnosticUnderlineError = { sp = c.normal.red, underline = true },
+
+          NormalFloat = { bg = c.base.bg3 },
+          FloatBorder = { bg = c.base.bg3, fg = c.base.fg3 },
+          StatusLine = { bg = c.base.bg3 },
+          TabLineSel = { bg = c.base.bg1, bold = true },
+
+          TelescopeNormal = { bg = c.base.bg1, fg = c.base.fg1 },
+          TelescopeBorder = { bg = c.base.bg1, fg = c.base.fg1 },
+
+          ["@character"] = { link = "Character" },
+          ["@module"] = { fg = c.base.fg2 },
+          ["@tag"] = { fg = c.bold.red },
+          ["@tag.delimiter"] = { fg = c.base.fg3 },
+          ["@variable"] = { link = "" },
+          ["@variable.member"] = { fg = c.base.fg2 },
+          ["@property"] = { fg = c.base.fg2 },
+        }
+      end,
+    },
+  },
   { "tjdevries/colorbuddy.nvim" },
   { "yorickpeterse/nvim-grey" },
   { "nyoom-engineering/oxocarbon.nvim" },
