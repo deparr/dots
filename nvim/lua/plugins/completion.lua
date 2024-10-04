@@ -3,7 +3,7 @@ return {
     -- Autocompletion
     -- TODO: redo cmp config
     "hrsh7th/nvim-cmp",
-    priority = 60,
+    -- priority = 60,
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
@@ -12,6 +12,7 @@ return {
       -- Adds LSP completion capabilities
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      -- "hrsh7th/cmp-nvim-lsp-signature-help",
 
       -- kind icon formatting
       -- "onsails/lspkind.nvim",
@@ -60,6 +61,7 @@ return {
           { name = "nvim_lsp" },
           { name = "lazydev", group_index = 0 },
           { name = "luasnip" },
+          -- { name = "nvim_lsp_signature_help" },
           { name = "path" },
         },
         experimental = {

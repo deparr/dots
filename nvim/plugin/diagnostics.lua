@@ -1,7 +1,7 @@
 vim.diagnostic.config {
   float = {
     source = true,
-    border = "rounded",
+    -- border = "rounded",
     severity_sort = true,
   },
   virtual_text = {
@@ -15,6 +15,7 @@ vim.diagnostic.config {
       [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
     },
   },
+  underline = true,
 }
 
 vim.keymap.set("n", "[d", function()
@@ -23,4 +24,3 @@ end)
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.goto_next { severity = { min = vim.diagnostic.severity.WARN } }
 end)
-

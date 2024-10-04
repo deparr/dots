@@ -21,9 +21,9 @@ function M.load()
   vim.g.colors_name = "jellybeans-nvim"
   vim.o.background = "dark"
 
-  require("custom.colors.jellybeans.highlights").set(vim.g.jb_nvim_opts)
+  require("custom.jellybeans.highlights").set(vim.g.jb_nvim_opts)
   if vim.g.jb_nvim_opts.term then
-    require("custom.colors.jellybeans.term").set()
+    require("custom.jellybeans.term").set()
   end
 end
 

@@ -4,7 +4,6 @@ return {
   dependecies = { "nvim-lua/plenary.nvim" },
   config = function()
     local harpoon = require "harpoon"
-
     harpoon:setup {
       settings = {
         save_on_toggle = true,
@@ -25,19 +24,19 @@ return {
     end, { desc = "harpoon menu" })
 
     -- USE HARPOON MORE
-    vim.keymap.set("n", "<C-S-P>", function()
+    vim.keymap.set("n", "<C-P>", function()
       harpoon:list():prev(nav_opts)
     end, { desc = "harpoon prev" })
 
-    vim.keymap.set("n", "<C-S-N>", function()
+    vim.keymap.set("n", "<C-N>", function()
       harpoon:list():next(nav_opts)
     end, { desc = "harpoon next" })
 
-    vim.keymap.set("n", "<M-p>", function()
+    vim.keymap.set("n", "<C-K>", function()
       harpoon:list():prev(nav_opts)
     end, { desc = "harpoon prev" })
 
-    vim.keymap.set("n", "<M-n>", function()
+    vim.keymap.set("n", "<C-J>", function()
       harpoon:list():next(nav_opts)
     end, { desc = "harpoon next" })
   end,

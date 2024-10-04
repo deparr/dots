@@ -21,13 +21,16 @@ require("lazy").setup("plugins", {
   defaults = { lazy = false },
   change_detection = { enabled = true, notify = false },
   install = {
-    colorscheme = { "base16-gruvbox-dark-hard", "tairiki", "carbonfox", "habamax" },
+    colorscheme = {  "tokyonight-night", "tairiki", "habamax" },
   },
-
   dev = {
     path = "~/dev",
     patterns = { "deparr" },
   },
 })
 
-vim.cmd.colorscheme "base16-gruvbox-dark-hard"
+-- vim.cmd.colorscheme "tairiki"
+-- vim.cmd.colorscheme "lavish"
+vim.cmd.colorscheme "tokyonight-night"
+-- vim.cmd "hi clear"
+-- vim.cmd.colorscheme "gruvbuddy"

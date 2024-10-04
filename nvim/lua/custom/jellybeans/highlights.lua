@@ -1,6 +1,6 @@
 local M = {}
 
-local c = require "custom.colors.jellybeans.colors"
+local c = require "custom.jellybeans.colors"
 local vimhl = vim.api.nvim_set_hl
 local hl = function(g, o)
   vimhl(0, g, o)

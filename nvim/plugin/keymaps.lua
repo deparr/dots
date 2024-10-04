@@ -67,12 +67,16 @@ set("n", "<A-,>", "<C-W>5<")
 set("n", "<A-.>", "<C-W>5>")
 set("n", "<A-->", "<C-W>5-")
 set("n", "<A-=>", "<C-W>5+")
-set("n", "<C-h>", "<C-W><C-h>")
-set("n", "<C-j>", "<C-W><C-j>")
-set("n", "<C-k>", "<C-W><C-k>")
-set("n", "<C-l>", "<C-W><C-l>")
+-- set("n", "<C-h>", "<C-W><C-h>")
+-- set("n", "<C-j>", "<C-W><C-j>")
+-- set("n", "<C-k>", "<C-W><C-k>")
+-- set("n", "<C-l>", "<C-W><C-l>")
 
--- TODO: need to rethink these
+-- open new file adjacent to current file
+set('n', '<leader>o', ':e <C-R>=expand("%:p:h") . "/" <cr>')
+
+set("n", "<M-l>", "<cmd>silent nohlsearch<cr>")
+
 set("n", "<M-j>", "<cmd>cnext<CR>zz")
 set("n", "<M-k>", "<cmd>cprev<CR>zz")
 

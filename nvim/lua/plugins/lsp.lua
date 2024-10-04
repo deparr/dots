@@ -17,14 +17,14 @@ return {
             window = {
               winblend = 0,
               relative = "editor",
-              normal_hl = "DiagnosticInfo",
+              -- normal_hl = "DiagnosticInfo"
             },
           },
-          progress = {
-            display = {
-              icon_style = "String",
-            },
-          },
+          -- progress = {
+          --   display = {
+          --     icon_style = "String",
+          --   },
+          -- },
         },
       },
       {
@@ -68,6 +68,7 @@ return {
         lua_ls = true,
         -- tsserver = true,
         vtsls = true,
+        svelte = true,
         bashls = true,
         clangd = {
           init_options = { clangdFileStatus = true },
@@ -75,6 +76,18 @@ return {
         },
         zls = {
           manual_install = true,
+        },
+        ocamllsp = {
+          manual_install = true,
+          settings = {
+            codelens = { enable = true },
+            inlayHints = { enable = true },
+          },
+          filetypes = {
+            "ocaml",
+            "ocaml.interface",
+            "ocaml.menhir",
+          },
         },
       }
 
@@ -127,6 +140,7 @@ return {
           local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "invalid lsp client")
 
           vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+          vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help)
           vim.keymap.set("n", "K", vim.lsp.buf.hover) -- set by default
           vim.keymap.set("n", "gd", vim.lsp.buf.definition)
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
@@ -146,19 +160,20 @@ return {
         end,
       })
 
-      vim.diagnostic.config {
-        virtual_text = true,
-        signs = true,
-        update_in_insert = false,
-        underline = true,
-        severity_sort = true,
-        float = {
-          border = float_border,
-          focusable = true,
-          header = "",
-          prefix = "",
-        },
-      }
+      -- vim.diagnostic.config {
+      --   virtual_text = true,
+      --   signs = true,
+      --   update_in_insert = false,
+      --   underline = true,
+      --   severity_sort = true,
+      --   float = {
+      --     border = float_border,
+      --     source = true,
+      --     focusable = true,
+      --     header = "",
+      --     prefix = "",
+      --   },
+      -- }
     end,
   },
 }

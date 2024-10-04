@@ -6,6 +6,7 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
+      vim.filetype.add { extension = { ebnf = "ebnf" } }
       require("nvim-treesitter.configs").setup {
         ensure_installed = {
           "vimdoc",
@@ -15,7 +16,6 @@ return {
           "c",
           "go",
           "rust",
-          "typescript",
           "javascript",
         },
         highlight = {

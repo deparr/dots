@@ -1,6 +1,6 @@
 return {
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     lazy = true,
     opts = {
       override_by_extension = {
@@ -9,16 +9,5 @@ return {
         },
       },
     },
-  },
-  {
-    "yamatsum/nvim-nonicons",
-    lazy = true,
-    dependencies = {
-      "kyazdani42/nvim-web-devicons",
-    },
-    config = function()
-      require("nvim-web-devicons").setup {}
-      require("nvim-nonicons").setup {}
-    end,
   },
 }
