@@ -37,7 +37,12 @@ opt.diffopt:append("indent-heuristic")
 opt.diffopt:append("algorithm:histogram")
 
 if require("compat").is_windows then
-  opt.shell = "pwsh.exe"
+  opt.shell = "pwsh"
+  opt.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+  opt.shellredir = '2>&1 | &&{ "$_" } | Out-File %s; exit $lastexitcode'
+  opt.shellpipe = '2>&1 | &&{ "$_" } | tee %s; exit $lastexitcode'
+  opt.shellquote = ''
+  opt.shellxquote = ''
 end
 
 opt.hlsearch = false

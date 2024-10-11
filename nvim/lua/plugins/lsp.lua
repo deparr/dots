@@ -1,4 +1,3 @@
-local float_border = require("compat").float_border_style
 return {
   {
     -- LSP Configuration & Plugins
