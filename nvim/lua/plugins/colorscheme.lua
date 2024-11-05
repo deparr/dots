@@ -1,14 +1,4 @@
 return {
-  -- {
-  --   "folke/styler.nvim",
-  --   opts = {
-  --     themes = {
-  --       zig = {
-  --         colorscheme = "tokyonight-night", background = "dark"
-  --       }
-  --     }
-  --   }
-  -- },
   {
     "deparr/tairiki.nvim",
     dev = false,
@@ -71,10 +61,60 @@ return {
       vim.api.nvim_create_autocmd({ "ColorScheme" }, {
         pattern = { "gruvbuddy" },
         callback = function()
-          local hl = function(g, hlopts)
-            vim.api.nvim_set_hl(0, g, hlopts)
-          end
-          hl("StatusLine", { fg = "#e0e0e0", bg = "#212121" })
+          -- local hl = function(g, hlopts)
+          --   vim.api.nvim_set_hl(0, g, hlopts)
+          -- end
+          local cb = require "colorbuddy"
+          local s = cb.styles
+          local c = cb.colors
+          local g = cb.groups
+          local Group = cb.Group
+
+          Group.new("Bold", nil, nil, s.bold)
+          Group.new("Conceal", c.gray3, nil, s.italic)
+          Group.new("ColorColumn", c.none, c.gray2:dark())
+          Group.new("FloatBorder", g.FloatBorder.fg, c.background, s.italic)
+          Group.new("MatchParen", c.orange, nil, s.bold)
+          Group.new("StatusLine", c.gray6, c.gray2:dark())
+          Group.new("TabLineFill", c.background, c.background)
+          Group.new("Question", c.gray6)
+          Group.new("QuickFixLine", c.gray6, nil, s.bold)
+          Group.new("Visual", nil, c.gray3:dark():dark():dark():dark())
+
+          -- Group.new("DiagnosticWarn", c.blue:saturate(0.4):complement())
+          local warn = c.orange:saturate(0.2)
+          local ok = c.green:dark()
+          local info = c.blue:dark()
+          local hint = c.purple:light()
+          Group.new("ErrorMsg", c.red)
+          Group.new("WarningMsg", warn)
+          Group.new("ModeMsg", c.gray3)
+          Group.new("MoreMsg", info)
+          Group.new("DiagnosticWarn", warn)
+          Group.new("DiagnosticOk", ok)
+          Group.new("DiagnosticInfo", info)
+          Group.new("DiagnosticHint", hint)
+          Group.new("DiagnosticUnderlineError", nil, nil, s.underline, c.red)
+          Group.new("DiagnosticUnderlineOk", nil, nil, s.underline, ok)
+          Group.new("DiagnosticUnderlineWarn", nil, nil, s.underline, warn)
+          Group.new("DiagnosticUnderlineInfo", nil, nil, s.underline, info)
+          Group.new("DiagnosticUnderlineHint", nil, nil, s.underline, hint)
+
+          Group.new("@function.lua", c.blue:dark())
+          Group.new("@function.method.lua", c.blue:dark())
+          Group.new("@function.method.call.lua", c.blue:dark())
+          Group.new("@property.lua", c.superwhite)
+
+          Group.new("@string.special.url.gdscript", c.white)
+          Group.new("@string.special.url.gdscript", c.white)
+          Group.new("@function.call.gdscript", c.blue:dark())
+          Group.new("@function.gdscript", c.blue:dark())
+
+          Group.new("TreesitterContextLineNumber", c.gray3, g.NormalFloat)
+          -- Group.new("TreesitterContextLineNumberBottom", nil, nil, s.underline, c.gray3)
+          -- Group.new("TreesitterContextBottom", nil, nil, s.underline, c.gray3)
+          Group.new("LazyButtonActive", c.background, c.superwhite)
+          Group.new("TelescopeBorder", g.FloatBorder.fg, c.background)
         end,
       })
     end,
