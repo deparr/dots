@@ -17,6 +17,9 @@ return {
           "go",
           "rust",
           "javascript",
+          "zig",
+          "gdscript",
+          "python",
         },
         highlight = {
           enable = true,
@@ -37,7 +40,7 @@ return {
           },
         },
       }
-      if require("compat").is_windows then
+      if require("util").is_windows then
         require("nvim-treesitter.install").compilers = { "zig", "gcc" }
       end
     end,

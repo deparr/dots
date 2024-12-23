@@ -8,8 +8,6 @@ return {
     prompt_save_on_select_new_entry = false,
     columns = {},
     keymaps = {
-      ["<C-h>"] = false,
-      ["<C-l>"] = false,
       ["<C-k>"] = false,
       ["<C-j>"] = false,
     },
