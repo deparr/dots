@@ -1,57 +1,56 @@
 return {
   {
     "deparr/tairiki.nvim",
-    dev = false,
-    branch = "minimal",
-    -- priority = 1000,
+    dev = true,
+    priority = 1000,
     config = function()
+      local c = require "tairiki.palette"
+      local util = require "tairiki.util"
+      local dark_cyan = util.darken(c.dark.cyan, 0.9, c.dark.bg)
+      local light_yellow = util.lighten(c.dark.yellow, 0.5, c.dark.fg)
+      -- local higher_con_comment = util.lighten(c.dark.comment, 0.3, light_yellow)
       require("tairiki").setup {
-        style = "dark",
-        transparent = false,
-        ending_tiles = true,
+        style = "dimmed",
+        ending_tildes = true,
         term_colors = false,
         diagnostics = {
           --darker = true,
-          undercurl = false,
+          undercurl = true,
         },
         colors = {
           zero_black = "#000000",
           lua_blue = "#618aae",
-          seagreen = "#99cc99",
         },
         highlights = {
-          -- ["NotifyBackground"] = { bg = "$zero_black" },
           -- ["NormalFloat"] = { bg = "$zero_black" },
-          ["CursorLineNr"] = { fg = "$fg", bold = true },
-          ["CursorLine"] = { bg = "$bg0" },
           -- ["FloatTitle"] = { bg = "$zero_black" },
           -- ["FloatBorder"] = { fg = "$zero_black", bg = "$zero_black" },
           -- ["FloatShadow"] = { fg = "$zero_black", bg = "$zero_black" },
           -- ["FloatShadowThrough"] = { fg = "$zero_black", bg = "$zero_black" },
-          -- ["LspInfoBorder"] = { link = "FloatBorder" },
-          -- ["LspInfoFloat"] = { link = "NormalFloat" },
-          -- ["ModeMsg"] = { fg = "$green" },
-          --
+          ["Title"] = { fg = c.dark.fg, fmt = "none" },
+
           ["@lsp.typemod.operator.controlFlow.rust"] = { link = "Special" },
-          ["@lsp.typemod.class.defaultLibrary"] = { fg = "$red" },
           ["@lsp.typemod.parameter"] = { fmt = "italic" },
           ["@lsp.type.parameter"] = { fmt = "italic" },
-          ["LspSignatureActiveParameter"] = { fmt = "bold,underline" },
-          -- -- ["@field"] = { link = "Normal" }, -- TODO: play with these a little more
-          -- -- ["@operator"] = { fg = "$purple" },
 
-          ["TreesitterContext"] = { bg = "$bg1" },
-          ["TreesitterContextLineNumber"] = { fg = "$blue", bg = "$bg1" },
+          ["@attribute"] = { fg = "$lua_blue" },
+          -- ["@keyword.modifier"] = { fg = c.dark.purple },
 
-          ["@string.special.url.gdscript"] = { fg = "$seagreen" },
+          -- lang spef
+          ["@string.special.url.gdscript"] = { fg = dark_cyan, fmt = "italic" },
+
           ["@string.special.url.svelte"] = { fg = "$green" },
+
+          ["@constructor.ocaml"] = { fg = "$orange" },
+          ["@module.ocaml"] = { fg = "$orange" },
+          ["@label.ocaml"] = { fg = light_yellow },
+
           ["@operator.gleam"] = { fg = "$light_purple" },
-          -- ["@function.lua"] = { fg = "$lua_blue" },
-          -- ["@function.builtin.lua"] = { fg = "$lua_blue" },
-          ["@keyword.conditional.svelte"] = { fg = "$purple" },
+
+          ["@variable.powershell"] = { fg = "$orange" },
         },
         toggle_style_key = "<leader>cs",
-        toggle_style_list = { "dark", "light" },
+        toggle_style_list = { "dimmed", "dark" },
       }
     end,
   },
@@ -105,7 +104,6 @@ return {
           Group.new("@function.method.call.lua", c.blue:dark())
           Group.new("@property.lua", c.superwhite)
 
-          Group.new("@string.special.url.gdscript", c.white)
           Group.new("@string.special.url.gdscript", c.white)
           Group.new("@function.call.gdscript", c.blue:dark())
           Group.new("@function.gdscript", c.blue:dark())
@@ -175,7 +173,6 @@ return {
   },
   {
     "ramojus/mellifluous.nvim",
-    priority = 1000,
     opts = {
       colorset = "kanagawa_dragon",
       plugins = {
@@ -200,19 +197,21 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
-      transparent = true,
       on_highlights = function(hl, c)
-        hl.WinSeparator = { fg = c.fg }
-      end
+        hl.WinSeparator = { fg = c.fg_gutter }
+
+        hl.helpCommand = { fg = c.blue, bg = nil }
+
+        hl["@markup.raw.markdown_inline"] = { fg = c.blue, bg = nil }
+        hl["@string.special.url.gdscript"] = { fg = c.teal }
+      end,
     },
   },
   { "erikbackman/brightburn.vim" },
   { "yorickpeterse/nvim-grey" },
   { "yorik1984/newpaper.nvim" },
-  { "gremble0/yellowbeans.nvim" },
   { "nyoom-engineering/oxocarbon.nvim" },
   { "savq/melange-nvim" },
-  -- { "eemed/sitruuna.vim" },
   { "EdenEast/nightfox.nvim" },
   {
     "navarasu/onedark.nvim",
@@ -340,7 +339,7 @@ return {
           -- StatusLine = { bg = "#202020" },
           -- Normal = { bg = "#151515" },
           NormalFloat = { bg = "#000000" },
-          Float = { bg = "#000000" },
+          -- Float = { bg = "#000000" },
           -- NormalNC = { bg = "#151515" },
           ["@type.builtin"] = { fg = "$coral" },
         },

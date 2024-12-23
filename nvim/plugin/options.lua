@@ -22,6 +22,8 @@ opt.smartindent = true
 opt.breakindent = true
 opt.wrap = false
 
+opt.listchars = "trail:•,tab:» ,nbsp:•,eol:↲"
+
 opt.splitright = true
 opt.splitbelow = true
 opt.laststatus = 3 -- global status line
@@ -36,7 +38,8 @@ opt.diffopt:append("iwhite")
 opt.diffopt:append("indent-heuristic")
 opt.diffopt:append("algorithm:histogram")
 
-if require("compat").is_windows then
+if require("util").is_windows then
+  -- this doesn't really work though
   opt.shell = "pwsh"
   opt.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
   opt.shellredir = '2>&1 | &&{ "$_" } | Out-File %s; exit $lastexitcode'

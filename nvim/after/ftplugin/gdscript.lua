@@ -1,12 +1,19 @@
-local port = os.getenv "GDSCRIPT_PORT" or "6005"
-local cmd = vim.lsp.rpc.connect("127.0.0.1", port)
-local pipe = "/tmp/godot.pipe"
-
-vim.lsp.start {
-  name = "godot",
-  cmd = cmd,
-  root_dir = vim.fs.dirname(vim.fs.find({ "project.godot", ".git" }, { upward = true })[1]),
-  on_attach = function(client, bufnr)
-    vim.api.nvim_command("echo serverstart('" .. pipe .. "')")
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>ff", "", {
+  desc = "find files {godot}",
+  noremap = true,
+  callback = function()
+    local ts = require "telescope.builtin"
+    ts.fd { find_command =
+      { "fd", "--type", "f", "--color", "never", "--exclude", '{addons,aseprite,assets}*' }
+    }
   end,
-}
+})
+
+vim.api.nvim_buf_set_keymap(0, "n", "<leader>fl", "", {
+  desc = "find live {godot}",
+  noremap = true,
+  callback = function()
+    local ts = require "telescope.builtin"
+    ts.live_grep { glob_pattern = { "!addons*", "!aseprite*", "!assets*" } }
+  end,
+})

@@ -38,7 +38,7 @@ return {
         })
       end
 
-      local use_icons = require("compat").use_icons
+      local use_icons = require("util").use_icons
       local opts = {
         fps = 60,
         stages = "static",

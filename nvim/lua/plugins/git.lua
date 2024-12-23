@@ -16,6 +16,7 @@ return {
       { "<leader>gd", "<cmd>Gitsigns diffthis<cr>" },
     },
   },
+  { "sindrets/diffview.nvim" },
   {
     "tpope/vim-fugitive",
     keys = {

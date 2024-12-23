@@ -1,3 +1,24 @@
+if false then
+  return {
+    {
+      "saghen/blink.cmp",
+      version = "v0.*",
+      opts = {
+        keymap = { preset = "default" },
+        appearance = {
+          use_nvim_cmp_as_default = true,
+          nerd_font_variant = "normal",
+        },
+        sources = {
+          default = { "lsp", "path", "buffer" },
+          cmdline = {}
+        },
+        -- signature = { enabled = true },
+      }
+    }
+  }
+end
+
 return {
   {
     -- Autocompletion
@@ -12,7 +33,6 @@ return {
       -- Adds LSP completion capabilities
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
-      -- "hrsh7th/cmp-nvim-lsp-signature-help",
 
       -- kind icon formatting
       -- "onsails/lspkind.nvim",
@@ -35,9 +55,10 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = {
-          completeopt = "menu,menuone,noinsert",
-        },
+        -- don't set these, they ruin godot lsp for some reason
+        -- completion = {
+        --   completeopt = "menu,menuone,noinsert",
+        -- },
         mapping = cmp.mapping.preset.insert {
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),

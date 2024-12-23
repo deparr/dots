@@ -3,11 +3,12 @@ return {
     -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- "folke/neodev.nvim",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "stevearc/conform.nvim",
+      -- "saghen/blink.cmp",
+      "hrsh7th/cmp-nvim-lsp",
       {
         "j-hui/fidget.nvim",
         opts = {
@@ -16,24 +17,21 @@ return {
             window = {
               winblend = 0,
               relative = "editor",
-              -- normal_hl = "DiagnosticInfo"
             },
           },
-          -- progress = {
-          --   display = {
-          --     icon_style = "String",
-          --   },
-          -- },
         },
       },
       {
         "folke/lazydev.nvim",
         ft = "lua",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
       },
     },
     config = function()
-      -- require("neodev").setup()
-
       require("conform").setup {
         formatters_by_ft = {
           lua = { "stylua" },
@@ -42,7 +40,9 @@ return {
         },
       }
 
-      local util = require "lspconfig.util"
+      -- local util = require "lspconfig.util"
+      local is_windows = require("util").is_windows
+      local gdscriptcmd = not is_windows and vim.lsp.rpc.connect("127.0.0.1", 6005) or { "ncat", "127.0.0.1", "6005" }
       local servers = {
         rust_analyzer = true,
         gopls = {
@@ -60,7 +60,22 @@ return {
             },
           },
         },
-        pylsp = true,
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = {
+                  ignore = {
+                    "E203", -- whitespace around :
+                    "E302", -- two blank lines inbetween func/blocks
+                    "E303", -- too many blank lines
+                  },
+                  maxLineLength = 120,
+                },
+              },
+            },
+          },
+        },
         gleam = {
           manual_install = true,
         },
@@ -77,6 +92,7 @@ return {
           manual_install = true,
         },
         ocamllsp = {
+          -- cmd = { "/path/to/opam/default/bin/ocamllsp.exe" },
           manual_install = true,
           settings = {
             codelens = { enable = true },
@@ -87,6 +103,11 @@ return {
             "ocaml.interface",
             "ocaml.menhir",
           },
+        },
+        gdscript = {
+          manual_install = true,
+          cmd = gdscriptcmd,
+          name = "godot",
         },
       }
 
@@ -111,10 +132,8 @@ return {
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
       local lspconfig = require "lspconfig"
-      local capabilities = nil
-      if pcall(require, "nvim_cmp_lsp") then
-        capabilities = require("cmp_nvim_lsp").default_capabilities()
-      end
+      -- local capabilities = require("blink.cmp").get_lsp_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       for name, config in pairs(servers) do
         if config == true then
