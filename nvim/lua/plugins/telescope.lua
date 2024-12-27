@@ -32,12 +32,12 @@ return {
           if buf and buf.loaded and buf.name:find(name, -#name, true) then
             if #buf.windows > 0 then
               local wininfo = vim.fn.getcursorcharpos(buf.windows[1])
-              name.context.row = wininfo[2]
-              name.context.col = wininfo[3]
+              return { row = wininfo[2], col = wininfo[3] }
             end
             break
           end
         end
+        return nil
       end
 
       local harpoon_add = function(pbufnr, map)

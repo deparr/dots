@@ -60,9 +60,6 @@ return {
       vim.api.nvim_create_autocmd({ "ColorScheme" }, {
         pattern = { "gruvbuddy" },
         callback = function()
-          -- local hl = function(g, hlopts)
-          --   vim.api.nvim_set_hl(0, g, hlopts)
-          -- end
           local cb = require "colorbuddy"
           local s = cb.styles
           local c = cb.colors
@@ -208,6 +205,7 @@ return {
     },
   },
   { "erikbackman/brightburn.vim" },
+  { "miikanissi/modus-themes.nvim" },
   { "yorickpeterse/nvim-grey" },
   { "yorik1984/newpaper.nvim" },
   { "nyoom-engineering/oxocarbon.nvim" },
@@ -342,9 +340,6 @@ return {
           -- Float = { bg = "#000000" },
           -- NormalNC = { bg = "#151515" },
           ["@type.builtin"] = { fg = "$coral" },
-        },
-        colors = {
-          --bg0 = "#151515"
         },
         code_style = {
           comments = "none",
