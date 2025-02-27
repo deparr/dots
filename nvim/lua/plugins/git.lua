@@ -13,6 +13,9 @@ return {
     },
     keys = {
       { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>" },
+      { "<leader>gi", "<cmd>Gitsigns toggle_signs<cr>" },
+      { "<leader>gn", "<cmd>Gitsigns next_hunk<cr>" },
+      { "<leader>gp", "<cmd>Gitsigns prev_hunk<cr>" },
       { "<leader>gd", "<cmd>Gitsigns diffthis<cr>" },
     },
   },

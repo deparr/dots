@@ -1,6 +1,7 @@
 vim.diagnostic.config {
   float = {
-    source = true,
+    source = "if_many",
+    show_header = false,
     -- border = "rounded",
     severity_sort = true,
   },

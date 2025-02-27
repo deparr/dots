@@ -2,7 +2,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-context",
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
@@ -43,6 +42,8 @@ return {
       if require("util").is_windows then
         require("nvim-treesitter.install").compilers = { "zig", "gcc" }
       end
+
+      require("nvim-treesitter.install").prefer_git = false
     end,
   },
 }

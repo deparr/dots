@@ -288,22 +288,19 @@ local LSPActive = {
 }
 
 local Ruler = {
-  provider = " %P %l:%c ",
+  provider = " %P %02l:%02c ",
   hl = function(self) return { fg = "black", bg = self:mode_color(), bold = true } end,
 }
 
-
-local ProfileRecording = {
-  condition = function()
-    local profile = package.loaded.profile
-    return profile and profile.is_recording()
-  end,
-  provider = function() return "󰑊 " end,
-  hl = function() return { fg = "red" } end,
-  update = {
-    "User",
-    pattern = { "ProfileStart", "ProfileStop" },
-  },
+local Git = {
+    condition = conditions.is_git_repo,
+    init = function(self)
+        self.status_dict = vim.b.gitsigns_status_dict
+    end,
+    hl = { fg = "fg" },
+    provider = function(self)
+        return " " .. self.status_dict.head
+    end,
 }
 
 return {
@@ -319,5 +316,5 @@ return {
   setup_colors = setup_colors,
   LSPActive = LSPActive,
   stl_static = stl_static,
-  ProfileRecording = ProfileRecording,
+  VCBranch = Git,
 }

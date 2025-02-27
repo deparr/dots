@@ -39,9 +39,11 @@ opt.diffopt:append("indent-heuristic")
 opt.diffopt:append("algorithm:histogram")
 
 if require("util").is_windows then
-  -- this doesn't really work though
-  opt.shell = "pwsh"
-  opt.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+  opt.shell = "pwsh -NoLogo"
+  -- this doesn't work
+  -- opt.shellcmdflag = '-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+  -- this seems to work for basic ! commands, not sure about substituitions
+  opt.shellcmdflag = '-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command'
   opt.shellredir = '2>&1 | &&{ "$_" } | Out-File %s; exit $lastexitcode'
   opt.shellpipe = '2>&1 | &&{ "$_" } | tee %s; exit $lastexitcode'
   opt.shellquote = ''

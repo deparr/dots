@@ -23,10 +23,12 @@ require("lazy").setup("plugins", {
   install = {
     colorscheme = { "tairiki", "habamax" },
   },
-  dev = {
-    path = "~/dev",
-    patterns = { "deparr" },
-  },
+  -- dev = {
+  --   path = "~/dev",
+  --   patterns = { "deparr" },
+  -- },
 })
 
-vim.cmd.colorscheme "tairiki"
+-- vim.cmd.colorscheme "tairiki"
+require("tairiki.palette").register("gruvbuddy", require("palettes.gruvbuddy"))
+require("tairiki").load({ palette = "gruvbuddy" })

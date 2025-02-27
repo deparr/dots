@@ -5,6 +5,7 @@ return {
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- { "natecraddock/telescope-zf-native.nvim" },
     },
     config = function()
       local ts = require "telescope"
@@ -16,9 +17,15 @@ return {
             override_file_sorter = true,
             case_mode = "smart_case",
           },
+          -- ["zf-native"] = {
+          --   file = {
+          --     match_filename = false,
+          --   }
+          -- }
         },
       }
       ts.load_extension "fzf"
+      -- ts.load_extension "zf-native"
     end,
     keys = function()
       local builtin = require "telescope.builtin"
@@ -64,17 +71,31 @@ return {
         return true
       end
 
+      local util = require "util"
+      local ff = util.in_gdproj
+          and function()
+            builtin.fd {
+              find_command = { "fd", "--type", "f", "--color", "never", "-E", "{addons,aseprite,assets}*", "-E", "*uid" },
+              attach_mappings = harpoon_add,
+            }
+          end
+        or function()
+          builtin.find_files { attach_mappings = harpoon_add }
+        end
+
+      local fl = util.in_gdproj
+          and function()
+            builtin.live_grep {
+              glob_pattern = { "!addons*", "!aseprite*", "!assets*", "!*uid" },
+            }
+          end
+        or builtin.live_grep
+
       return {
         { "<leader>fr", builtin.resume },
-        {
-          "<leader>ff",
-          function()
-            local opts = { attach_mappings = harpoon_add }
-            builtin.find_files(opts)
-          end,
-        },
+        { "<leader>ff", ff },
         { "<leader>fg", builtin.git_files },
-        { "<leader>fl", builtin.live_grep },
+        { "<leader>fl", fl },
         { "<leader>fd", builtin.diagnostics },
         { "<leader>fh", builtin.help_tags },
         { "<leader>fk", builtin.keymaps },

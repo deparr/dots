@@ -6,9 +6,10 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       "stevearc/conform.nvim",
-      -- "saghen/blink.cmp",
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
+      -- "hrsh7th/cmp-nvim-lsp",
       {
         "j-hui/fidget.nvim",
         opts = {
@@ -83,7 +84,7 @@ return {
         -- tsserver = true,
         vtsls = true,
         svelte = true,
-        bashls = true,
+        -- bashls = true,
         clangd = {
           init_options = { clangdFileStatus = true },
           filetypes = { "c", "cpp" },
@@ -132,8 +133,7 @@ return {
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
       local lspconfig = require "lspconfig"
-      -- local capabilities = require("blink.cmp").get_lsp_capabilities()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       for name, config in pairs(servers) do
         if config == true then
@@ -177,6 +177,18 @@ return {
           end
         end,
       })
+
+      require("lsp_lines").setup()
+      vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+
+      vim.keymap.set("", "<leader>ll", function()
+        local config = vim.diagnostic.config() or {}
+        if config.virtual_text then
+          vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+        else
+          vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+        end
+      end, { desc = "toggle lsp_lines" })
 
       -- vim.diagnostic.config {
       --   virtual_text = true,

@@ -1,4 +1,4 @@
-if false then
+if true then
   return {
     {
       "saghen/blink.cmp",
@@ -6,16 +6,28 @@ if false then
       opts = {
         keymap = { preset = "default" },
         appearance = {
-          use_nvim_cmp_as_default = true,
+          use_nvim_cmp_as_default = false,
           nerd_font_variant = "normal",
         },
         sources = {
-          default = { "lsp", "path", "buffer" },
-          cmdline = {}
+          default = { "lazydev", "lsp", "path", "buffer" },
+          providers = {
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              score_offset = 100,
+            }
+          },
         },
-        -- signature = { enabled = true },
-      }
-    }
+        cmdline = { enabled = false },
+        signature = { enabled = true },
+        completion = {
+          accept = { auto_brackets = { enabled = false } },
+          ghost_text = { enabled = true },
+          documentation = { auto_show = true, auto_show_delay_ms = 300 },
+        },
+      },
+    },
   }
 end
 
