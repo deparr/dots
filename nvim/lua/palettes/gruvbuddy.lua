@@ -16,6 +16,7 @@ local M = {
 	brown = "#a3685a",
   light_purple = "#aa93cd",
   light_blue = "#81a2b3",
+  gruv_yellow = "#fbffae"
 }
 
 M.bg_light  = "#242627"
@@ -62,12 +63,14 @@ function M.regen_sub_groups(self)
     Character = { fg = self.red },
     Float = { fg = self.red },
     Label = { fg = self.yellow },
+    Macro = { fg = self.gruv_yellow },
     Number = { fg = self.red },
     PreProc = { fg = self.yellow },
     SpecialChar = { fg = self.brown },
     Type = { fg = self.syn.type, italic = true },
     Structure = { fg = self.yellow },
 
+    ["@constant.builtin"] = "Special",
     ["@character"] = "Character",
     ["@function.builtin"] = "@function",
     ["@label"] = "Label",

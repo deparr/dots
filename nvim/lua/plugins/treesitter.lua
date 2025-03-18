@@ -34,6 +34,8 @@ return {
               ["ii"] = "@conditional.inner",
               ["ab"] = "@block.outer",
               ["ib"] = "@block.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
             },
             include_surrounding_whitespace = false,
           },

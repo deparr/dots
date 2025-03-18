@@ -6,7 +6,6 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
       "stevearc/conform.nvim",
       "saghen/blink.cmp",
       -- "hrsh7th/cmp-nvim-lsp",
@@ -81,7 +80,6 @@ return {
           manual_install = true,
         },
         lua_ls = true,
-        -- tsserver = true,
         vtsls = true,
         svelte = true,
         -- bashls = true,
@@ -178,7 +176,6 @@ return {
         end,
       })
 
-      require("lsp_lines").setup()
       vim.diagnostic.config { virtual_text = true, virtual_lines = false }
 
       vim.keymap.set("", "<leader>ll", function()

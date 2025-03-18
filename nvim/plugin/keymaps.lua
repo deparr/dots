@@ -1,9 +1,10 @@
 local set = vim.keymap.set
+
+local dircmd = vim.cmd.Ex
 if vim.cmd.Oil then
-  set("n", "<leader>pv", vim.cmd.Oil)
-else
-  set("n", "<leader>pv", vim.cmd.Ex)
+  dircmd = vim.cmd.Oil
 end
+set({ "n" }, "<leader>pv", dircmd)
 
 -- easier begin/end
 set('', 'H', '^')

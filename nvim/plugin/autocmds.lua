@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
 })
 
 local text = vim.api.nvim_create_augroup("text", { clear = true })
-for _, pat in ipairs { "text", "markdown", "mail", "gitcommit" } do
+for _, pat in ipairs { "text", "markdown", "mail", "gitcommit", "djot" } do
   vim.api.nvim_create_autocmd("Filetype", {
     pattern = pat,
     group = text,

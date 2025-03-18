@@ -10,6 +10,10 @@ return {
     config = function()
       local ts = require "telescope"
       ts.setup {
+        -- windows eats <C-Space>
+        pickers = require("util").is_windows and {
+          live_grep = { mappings = { i = { ["<C-\\>"] = "to_fuzzy_refine" } } },
+        } or nil,
         extensions = {
           fzf = {
             fuzzy = true,
@@ -75,7 +79,19 @@ return {
       local ff = util.in_gdproj
           and function()
             builtin.fd {
-              find_command = { "fd", "--type", "f", "--color", "never", "-E", "{addons,aseprite,assets}*", "-E", "*uid" },
+              find_command = {
+                "fd",
+                "--type",
+                "f",
+                "--color",
+                "never",
+                "-E",
+                "{addons,aseprite,assets}*",
+                "-E",
+                "*uid",
+                "-E",
+                "*import",
+              },
               attach_mappings = harpoon_add,
             }
           end
@@ -86,7 +102,7 @@ return {
       local fl = util.in_gdproj
           and function()
             builtin.live_grep {
-              glob_pattern = { "!addons*", "!aseprite*", "!assets*", "!*uid" },
+              glob_pattern = { "!addons*", "!aseprite*", "!assets*", "!*uid", "!*.import" },
             }
           end
         or builtin.live_grep

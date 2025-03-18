@@ -9,6 +9,7 @@ opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 opt.scrolloff = 6
+opt.mousescroll = "ver:1,hor:6"
 
 opt.foldenable = false
 opt.foldmethod = 'manual'

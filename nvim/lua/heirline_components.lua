@@ -289,7 +289,7 @@ local LSPActive = {
 
 local Ruler = {
   provider = " %P %02l:%02c ",
-  hl = function(self) return { fg = "black", bg = self:mode_color(), bold = true } end,
+  hl = function(self) return { fg = "bg", bg = self:mode_color(), bold = true } end,
 }
 
 local Git = {
