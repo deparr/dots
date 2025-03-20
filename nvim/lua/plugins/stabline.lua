@@ -33,7 +33,6 @@ return {
           },
           comp.ViMode,
           comp.lpad(comp.VCBranch),
-          comp.lpad(comp.ProfileRecording),
           comp.lpad(comp.LSPActive),
           comp.lpad(comp.Diagnostics),
           require("statusline").left_components,

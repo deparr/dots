@@ -20,8 +20,8 @@ vim.diagnostic.config {
 }
 
 vim.keymap.set("n", "[d", function()
-  vim.diagnostic.goto_prev { severity = { min = vim.diagnostic.severity.WARN } }
+  vim.buf.diagnostic.goto_prev { severity = { min = vim.diagnostic.severity.WARN } }
 end)
 vim.keymap.set("n", "]d", function()
-  vim.diagnostic.goto_next { severity = { min = vim.diagnostic.severity.WARN } }
+  vim.buf.diagnostic.goto_next { severity = { min = vim.diagnostic.severity.WARN } }
 end)

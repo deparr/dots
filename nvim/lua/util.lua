@@ -4,15 +4,15 @@ local M = {}
 M.float_border_style = "rounded"
 M.use_icons = true
 M.ts_top_prompt = true
-M.is_windows = vim.uv.os_uname().sysname == "Windows_NT"
-M.todo_file = M.is_windows and "V:\\todo.md" or "~/todo.md"
-M.is_windows = vim.uv.os_uname().sysname:match(".*[wW]indows.*") ~= nil
+M.is_windows = vim.uv.os_uname().sysname:match ".*[wW]indows.*" ~= nil
 M.dev_dir = M.is_windows and "V:\\Code" or "~/dev"
 M.todo_file = M.is_windows and "V:\\todo.md" or "~/todo.md"
-M.in_gdproj = vim.fs.root(0, function(n, _) return n == "project.godot" or n == ".godot" end) ~= nil
+M.in_gdproj = vim.fs.root(0, function(n, _)
+  return n == "project.godot" or n == ".godot"
+end) ~= nil
 
 function M.dev(path)
-  local si = path:find("/")
+  local si = path:find "/"
   if si then
     path = path:sub(si)
   end
