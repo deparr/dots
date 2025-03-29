@@ -31,3 +31,16 @@ function git_clone_or_update() {
     git clone "$1" "$2" 2>/dev/null && print 'Updated' || (cd "$2"; git pull)
 }
 
+function better_ctrl_z() {
+    if [[ -n $(jobs -sp) ]]; then
+        if [[ $#BUFFER -ne 0 ]]; then
+            zle push-input
+        fi
+
+        BUFFER="fg"
+        zle accept-line
+    fi
+}
+
+zle -N better_ctrl_z
+bindkey '^z' better_ctrl_z
