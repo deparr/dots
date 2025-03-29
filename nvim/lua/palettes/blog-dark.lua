@@ -1,4 +1,4 @@
-local fg = "#cccccc"
+local fg = "#d0d0d0"
 local keyword = "#dddddd"
 local string = "#22ee55"
 local builtin = "#ff894c"
@@ -19,11 +19,11 @@ local h = {
   Identifier = { fg = fg },
   Function = { fg = func },
   Statement = { fg = fg },
-  Conditional = { fg = keyword, bold = true },
-  Repeat = { fg = keyword, bold = true },
+  Conditional = { fg = fg, bold = true },
+  Repeat = { fg = fg, bold = true },
   Label = { fg = fg },
   Operator = { fg = fg },
-  Keyword = { fg = keyword, bold = true },
+  Keyword = { fg = fg, bold = true },
   Exception = { fg = keyword },
   PreProc = { fg = keyword, bold = true },
   Include = { fg = keyword, bold = true },
@@ -78,6 +78,7 @@ h["@attribute.builtin"] = h.PreProc
 h["@property"] = { fg = fg }
 h["@function"] = h.Function
 h["@function.builtin"] = { fg = builtin }
+h["@function.call"] = h.Function
 h["@function.macro"] = h.Macro
 h["@constructor"] = { fg = builtin }
 h["@operator"] = h.Operator

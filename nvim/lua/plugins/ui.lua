@@ -3,6 +3,18 @@ return {
     "crispgm/nvim-tabline",
     config = true,
   },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      notification = {
+        override_vim_notify = true,
+        window = {
+          winblend = 0,
+          relative = "editor",
+        }
+      }
+    },
+  },
   -- heirline config stolen and slightly modified from github/stevearc
   {
     "rebelot/heirline.nvim",
@@ -39,6 +51,7 @@ return {
           comp.lpad(comp.FullFileName),
           { provider = "%=" },
           require("statusline").right_components,
+          comp.rpad(comp.Jolt),
           comp.rpad(comp.FileType),
           comp.Ruler
         ),

@@ -2,7 +2,9 @@
 return {
   {
     "deparr/tairiki.nvim",
-    priority = 1000,
+    lazy = true,
+    -- dir = require("util").dev "deparr/tairiki.nvim",
+    -- priority = 1000,
     config = function()
       require("tairiki.palette").register("gruvbuddy", require "palettes.gruvbuddy")
       require("tairiki").setup {
@@ -38,6 +40,7 @@ return {
       }
     end,
   },
+  { "jwbaldwin/oscura.nvim" },
   { "sainnhe/sonokai" },
   { "ribru17/bamboo.nvim", opts = {} },
   -- {

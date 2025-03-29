@@ -21,7 +21,7 @@ require("lazy").setup("plugins", {
   defaults = { lazy = false },
   change_detection = { enabled = true, notify = false },
   install = {
-    colorscheme = { "tairiki", "habamax" },
+    colorscheme = { "gruvbuddy", "habamax" },
   },
   performance = {
     rtp = {
@@ -36,4 +36,5 @@ require("lazy").setup("plugins", {
   },
 })
 
-require("tairiki").load()
+-- require("tairiki").load()
+vim.cmd.colorscheme "gruvbuddy"

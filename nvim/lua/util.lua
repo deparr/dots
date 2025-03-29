@@ -1,49 +1,16 @@
 -- Misc settings to be shared across plugins
 local M = {}
 
-M.float_border_style = "rounded"
-M.use_icons = true
-M.ts_top_prompt = true
-M.is_windows = vim.uv.os_uname().sysname:match ".*[wW]indows.*" ~= nil
+M.is_windows = vim.uv.os_uname().sysname:match(".*[wW]indows.*") ~= nil
 M.dev_dir = M.is_windows and "V:\\Code" or "~/dev"
-M.todo_file = M.is_windows and "V:\\todo.md" or "~/todo.md"
-M.in_gdproj = vim.fs.root(0, function(n, _)
-  return n == "project.godot" or n == ".godot"
-end) ~= nil
+M.in_gdproj = vim.fs.root(0, function(n, _) return n == "project.godot" or n == ".godot" end) ~= nil
 
 function M.dev(path)
-  local si = path:find "/"
+  local si = path:find("/")
   if si then
     path = path:sub(si)
   end
-  path = M.dev_dir .. path
-  return path:gsub("//", "/")
-end
-
-M.create_floating_win = function(opts)
-  opts = opts or {}
-  local width = opts.width or math.floor(vim.o.columns * 0.8)
-  local height = opts.height or math.floor(vim.o.lines * 0.8)
-
-  local col = math.floor((vim.o.columns - width) / 2)
-  local row = math.floor((vim.o.lines - height) / 2)
-
-  local buf = vim.api.nvim_create_buf(false, true) -- no file, scratch buffer
-  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf }) -- Clean up buffer on close
-
-  local win_config = {
-    relative = "editor",
-    width = width,
-    height = height,
-    col = col,
-    row = row,
-    style = "minimal",
-    border = "rounded",
-  }
-
-  local win = vim.api.nvim_open_win(buf, true, win_config)
-
-  return { buf = buf, win = win }
+  return vim.fs.joinpath(M.dev_dir,  path)
 end
 
 M.dump_highlight_groups = function(path)

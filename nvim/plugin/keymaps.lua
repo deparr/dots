@@ -81,14 +81,3 @@ set("n", "<M-k>", "<cmd>cprev<CR>zz")
 
 set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 set("n", "<leader>x", "<cmd>silent !chmod +x %<CR>", { silent = true })
-
-set("n", "<leader>td", function()
-  local bufwin = require("util").create_floating_win {
-    width = math.floor(vim.o.columns * 0.5),
-    height = 15,
-  }
-  vim.api.nvim_command("edit " .. require("util").todo_file)
-  vim.keymap.set("n", "q", function()
-    vim.api.nvim_win_close(bufwin.win, true)
-  end, { noremap = true, silent = true, buffer = bufwin.buf })
-end)

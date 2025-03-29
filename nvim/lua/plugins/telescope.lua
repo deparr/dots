@@ -90,7 +90,7 @@ return {
                 "-E",
                 "*uid",
                 "-E",
-                "*import",
+                "*.import",
               },
               attach_mappings = harpoon_add,
             }
@@ -102,7 +102,7 @@ return {
       local fl = util.in_gdproj
           and function()
             builtin.live_grep {
-              glob_pattern = { "!addons*", "!aseprite*", "!assets*", "!*uid", "!*.import" },
+              glob_pattern = { "!addons*", "!aseprite*", "!assets*", "!*.uid", "!*.import" },
             }
           end
         or builtin.live_grep

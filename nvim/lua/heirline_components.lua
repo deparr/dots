@@ -95,7 +95,7 @@ local ViMode = {
     },
   },
   provider = function(self) return " " .. self.mode_names[self.mode] .. " " end,
-  hl = function(self) return { fg = "black", bg = self:mode_color(), bold = true } end,
+  hl = function(self) return { fg = "bg", bg = self:mode_color(), bold = true } end,
   update = {
     "ModeChanged",
   },
@@ -303,6 +303,14 @@ local Git = {
     end,
 }
 
+local Jolt = {
+  condition = function() return vim.g.jolt_watching ~= nil end,
+  hl = function(self) return { fg = vim.g.jolt_watching and "yellow" or "gray" } end,
+  provider = function(self)
+    return "⚡"
+  end
+}
+
 return {
   ViMode = ViMode,
   Ruler = Ruler,
@@ -317,4 +325,5 @@ return {
   LSPActive = LSPActive,
   stl_static = stl_static,
   VCBranch = Git,
+  Jolt = Jolt,
 }

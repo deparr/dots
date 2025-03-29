@@ -29,11 +29,11 @@ end
 --   end,
 -- })
 --
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*",
-  callback = function()
-    if vim.bo.modifiable then
-      vim.bo.fileformat = "unix"
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = "*",
+--   callback = function()
+--     if vim.bo.modifiable then
+--       vim.bo.fileformat = "unix"
+--     end
+--   end,
+-- })
