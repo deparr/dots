@@ -88,7 +88,7 @@ return {
                 "-E",
                 "{addons,aseprite,assets}*",
                 "-E",
-                "*uid",
+                "*.uid",
                 "-E",
                 "*.import",
               },
