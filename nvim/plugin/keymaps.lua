@@ -16,8 +16,6 @@ set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- keep cursor in center
 set("n", "J", "mzJ`z")
-set("n", "<C-d>", "<C-d>zz")
-set("n", "<C-u>", "<C-u>zz")
 set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
 
@@ -60,7 +58,7 @@ set("i", "<Right>", "<nop>")
 
 set("n", "Q", "<nop>")
 set("n", "q:", "<nop>")
-set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+set("n", "<C-f>", "<cmd>silent !tmux neww tmuxs<CR>")
 
 set("n", "<A-,>", "<C-W>5<")
 set("n", "<A-.>", "<C-W>5>")
@@ -75,9 +73,6 @@ set("n", "<A-=>", "<C-W>5+")
 set('n', '<leader>o', ':e <C-R>=expand("%:p:h") . "/" <cr>')
 
 set("n", "<M-l>", "<cmd>silent nohlsearch<cr>")
-
-set("n", "<M-j>", "<cmd>cnext<CR>zz")
-set("n", "<M-k>", "<cmd>cprev<CR>zz")
 
 set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 set("n", "<leader>x", "<cmd>silent !chmod +x %<CR>", { silent = true })

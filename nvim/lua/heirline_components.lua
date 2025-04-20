@@ -307,7 +307,7 @@ local Jolt = {
   condition = function() return vim.g.jolt_watching ~= nil end,
   hl = function(self) return { fg = vim.g.jolt_watching and "yellow" or "gray" } end,
   provider = function(self)
-    return "⚡"
+    return ""
   end
 }
 

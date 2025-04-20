@@ -1,6 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     opts = {
       signs = {
         add = { text = "│" },
@@ -10,6 +11,7 @@ return {
         changedelete = { text = "~" },
         untracked = { text = "┆" },
       },
+      signcolumn = false,
     },
     keys = {
       { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>" },
@@ -19,7 +21,7 @@ return {
       { "<leader>gd", "<cmd>Gitsigns diffthis<cr>" },
     },
   },
-  { "sindrets/diffview.nvim" },
+  { "sindrets/diffview.nvim", lazy = true },
   {
     "tpope/vim-fugitive",
     keys = {

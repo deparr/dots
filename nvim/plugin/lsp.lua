@@ -3,12 +3,11 @@ vim.lsp.enable({
   "gdscript",
   "gopls",
   "zls",
-  "gopls",
 })
 
 local disable_semantic_tokens = {
   lua = true,
-  zig = true,
+  -- zig = true, -- set in zls.json
   -- rust = true,
 }
 

@@ -1,137 +1,104 @@
-local fg = "#d0d0d0"
-local keyword = "#dddddd"
-local string = "#22ee55"
-local builtin = "#ff894c"
-local comment = "#aaaa77"
-local func = "#b1a0f8"
-local literal = "#ff8080"
-local type = "#6688ff"
+local white = "#c5c8c6"
+local purple = "#b294bb"
+local blue = "#81a2be"
+local cyan = "#8abeb7"
+local green = "#b5bd68"
+local yellow = "#d7af5f" -- sonokai yellow
+local orange = "#de935f"
+local gray = "#696969"
+local red = "#cc6666"
 
 local h = {
-  Normal = { fg = fg },
-  Comment = { fg = comment, italic = true },
-  Constant = { fg = literal },
-  String = { fg = string },
-  Character = { fg = literal },
-  Number = { fg = literal },
-  Boolean = { fg = literal },
-  Float = { fg = literal },
-  Identifier = { fg = fg },
-  Function = { fg = func },
-  Statement = { fg = fg },
-  Conditional = { fg = fg, bold = true },
-  Repeat = { fg = fg, bold = true },
-  Label = { fg = fg },
-  Operator = { fg = fg },
-  Keyword = { fg = fg, bold = true },
-  Exception = { fg = keyword },
-  PreProc = { fg = keyword, bold = true },
-  Include = { fg = keyword, bold = true },
-  Define = { fg = keyword, bold = true },
-  Macro = { fg = builtin },
-  PreCondit = { fg = keyword, bold = true },
-  Type = { fg = fg },
-  StorageClass = { fg = type },
-  Structure = { fg = type },
-  Typedef = { fg = type },
-  Special = { fg = builtin, bold = true },
-  SpecialChar = { fg = builtin },
-  Tag = { fg = type },
-  Delimiter = { fg = fg },
-  SpecialComment = { fg = comment, italic = true, bold = true },
-  Debug = { fg = builtin },
-  Underlined = { underline = true },
-  Bold = { bold = true },
-  Ignore = {},
-  Todo = { fg = builtin, bold = true },
+  ["@attribute"] = { fg = yellow },
+  ["@attribute.builtin"] = { fg = yellow },
+  ["@boolean"] = { fg = orange },
+  ["@character"] = { fg = green },
+  ["@character.special"] = { fg = white },
+  ["@comment"] = { fg = gray },
+  ["@comment.documentation"] = { fg = gray },
+  ["@comment.error"] = { fg = red },
+  ["@comment.note"] = { fg = gray },
+  ["@comment.todo"] = { fg = gray },
+  ["@comment.warning"] = { fg = gray },
+  ["@constant"] = { fg = white, bold = true },
+  ["@constant.builtin"] = { fg = orange },
+  ["@constant.macro"] = { fg = yellow },
+  ["@constructor"] = { fg = white },
+  ["@diff.delta"] = { fg = blue },
+  ["@diff.minus"] = { fg = red },
+  ["@diff.plus"] = { fg = green },
+  ["@function"] = { fg = blue },
+  ["@function.builtin"] = { fg = yellow },
+  ["@function.call"] = { fg = white },
+  ["@function.macro"] = { fg = yellow },
+  ["@function.method"] = { fg = blue },
+  ["@function.method.call"] = { fg = white },
+  ["@keyword"] = { fg = purple },
+  ["@keyword.conditional"] = { fg = purple },
+  ["@keyword.conditional.ternary"] = { fg = cyan },
+  ["@keyword.coroutine"] = { fg = purple },
+  ["@keyword.debug"] = { fg = purple },
+  ["@keyword.directive"] = { fg = purple },
+  ["@keyword.directive.define"] = { fg = purple },
+  ["@keyword.exception"] = { fg = purple },
+  ["@keyword.function"] = { fg = purple },
+  ["@keyword.import"] = { fg = purple },
+  ["@keyword.modifier"] = { fg = purple },
+  ["@keyword.operator"] = { fg = purple },
+  ["@keyword.repeat"] = { fg = purple },
+  ["@keyword.return"] = { fg = purple },
+  ["@keyword.type"] = { fg = purple },
+  ["@label"] = { fg = yellow },
+  ["@markup.heading"] = { fg = white, bold = true },
+  ["@markup.heading.1"] = { fg = white, bold = true },
+  ["@markup.heading.2"] = { fg = white, bold = true },
+  ["@markup.heading.3"] = { fg = white, bold = true },
+  ["@markup.heading.4"] = { fg = white, bold = true },
+  ["@markup.heading.5"] = { fg = white, bold = true },
+  ["@markup.heading.6"] = { fg = white, bold = true },
+  ["@markup.italic"] = { italic = true },
+  ["@markup.link"] = { fg = blue },
+  ["@markup.link.label"] = { fg = orange },
+  ["@markup.link.url"] = { underline = true },
+  ["@markup.list"] = { fg = white },
+  ["@markup.list.checked"] = { fg = green },
+  ["@markup.list.unchecked"] = { fg = yellow },
+  ["@markup.math"] = { fg = cyan },
+  ["@markup.quote"] = { fg = gray },
+  ["@markup.raw"] = { fg = white },
+  ["@markup.raw.block"] = { fg = white },
+  ["@markup.strikethrough"] = { strikethrough = true },
+  ["@markup.strong"] = { bold = true },
+  ["@markup.underline"] = { underline = true },
+  ["@module"] = { fg = white },
+  ["@module.builtin"] = { fg = white },
+  ["@number"] = { fg = orange },
+  ["@number.float"] = { fg = orange },
+  ["@operator"] = { fg = cyan },
+  ["@property"] = { fg = white },
+  ["@punctuation.bracket"] = { fg = white },
+  ["@punctuation.delimiter"] = { fg = white },
+  ["@punctuation.special"] = { fg = orange },
+  ["@string"] = { fg = green },
+  ["@string.documentation"] = { fg = green },
+  ["@string.escape"] = { fg = red },
+  ["@string.regexp"] = { fg = red },
+  ["@string.special"] = { fg = red },
+  ["@string.special.path"] = { fg = red },
+  ["@string.special.symbol"] = { fg = red },
+  ["@string.special.url"] = { fg = cyan },
+  ["@tag"] = { fg = blue },
+  ["@tag.attribute"] = { fg = yellow },
+  ["@tag.builtin"] = { fg = blue },
+  ["@tag.delimiter"] = { fg = white },
+  ["@type"] = { fg = white },
+  ["@type.builtin"] = { fg = orange },
+  ["@type.definition"] = { fg = cyan, bold = true },
+  ["@variable"] = { fg = white },
+  ["@variable.builtin"] = { fg = white },
+  ["@variable.member"] = { fg = white },
+  ["@variable.parameter"] = { fg = white },
+  ["@variable.parameter.builtin"] = { fg = white },
 }
-
-h["@variable"] = { fg = fg }
-h["@variable.builtin"] = { fg = literal }
-h["@variable.parameter"] = { fg = fg }
-h["@variable.parameter.builtin"] = { fg = fg }
-h["@variable.member"] = { fg = fg }
-h["@constant"] = h.Constant
-h["@constant.builtin"] = h["@constant"]
-h["@constant.macro"] = h.Macro
-h["@module"] = { fg = fg }
-h["@module.builtin"] = { fg = func }
-h["@label"] = { fg = fg }
-h["@string"] = h.String
-h["@string.documentation"] = h.String
-h["@string.regexp"] = { fg = literal }
-h["@string.escape"] = { fg = literal }
-h["@string.special"] = { fg = literal }
-h["@string.special.symbol"] = { fg = literal }
-h["@string.special.path"] = { fg = literal }
-h["@string.special.url"] = { fg = type, underline = true }
-h["@character"] = h.Character
-h["@character.special"] = h.SpecialChar
-h["@boolean"] = h.Boolean
-h["@number"] = h.Number
-h["@number.float"] = h.Float
-h["@type"] = h.Type
-h["@type.builtin"] = { fg = type }
-h["@type.definition"] = { fg = fg }
-h["@attribute"] = h.PreProc
-h["@attribute.builtin"] = h.PreProc
-h["@property"] = { fg = fg }
-h["@function"] = h.Function
-h["@function.builtin"] = { fg = builtin }
-h["@function.call"] = h.Function
-h["@function.macro"] = h.Macro
-h["@constructor"] = { fg = builtin }
-h["@operator"] = h.Operator
-h["@keyword"] = h.Keyword
-h["@keyword.coroutine"] = h.Keyword
-h["@keyword.function"] = h.Keyword
-h["@keyword.operator"] = h.Keyword
-h["@keyword.import"] = h.Keyword
-h["@keyword.type"] = h.Keyword
-h["@keyword.modifier"] = h.Keyword
-h["@keyword.repeat"] = h.Keyword
-h["@keyword.return"] = h.Keyword
-h["@keyword.debug"] = h.Keyword
-h["@keyword.exception"] = h.Keyword
-h["@keyword.conditional"] = h.Keyword
-h["@keyword.conditional.ternary"] = h.Operator
-h["@keyword.directive"] = h.Keyword
-h["@keyword.directive.define"] = h.Keyword
-h["@punctuation.delimiter"] = { fg = fg }
-h["@punctuation.bracket"] = { fg = fg }
-h["@punctuation.special"] = { fg = func }
-h["@comment"] = h.Comment
-h["@comment.error"] = h.Comment
-h["@comment.warning"] = h.Comment
-h["@comment.todo"] = h.Comment
-h["@comment.note"] = h.Comment
-h["@markup.strong"] = { bold = true }
-h["@markup.italic"] = { italic = true }
-h["@markup.strikethrough"] = { strikethrough = true }
-h["@markup.underline"] = { underline = true }
-h["@markup.heading"] = { fg = fg }
-h["@markup.heading.1"] = { fg = fg }
-h["@markup.heading.2"] = { fg = fg }
-h["@markup.heading.3"] = { fg = fg }
-h["@markup.heading.4"] = { fg = fg }
-h["@markup.heading.5"] = { fg = fg }
-h["@markup.heading.6"] = { fg = fg }
-h["@markup.quote"] = { fg = fg }
-h["@markup.math"] = { fg = func }
-h["@markup.link"] = { fg = type }
-h["@markup.link.label"] = { fg = builtin }
-h["@markup.link.url"] = { underline = true }
-h["@markup.raw"] = h.String
-h["@markup.raw.block"] = h.String
-h["@markup.list"] = h.Special
-h["@markup.list.checked"] = { fg = string }
-h["@markup.list.unchecked"] = { fg = fg }
-h["@diff.plus"] = h.DiffAdd
-h["@diff.minus"] = h.DiffDelete
-h["@diff.delta"] = h.DiffChange
-h["@tag"] = { fg = type }
-h["@tag.builtin"] = { fg = func }
-h["@tag.attribute"] = h["@property"]
-h["@tag.delimiter"] = h.Delimiter
 
 return h

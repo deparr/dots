@@ -19,5 +19,43 @@ return {
       --   restore = "tairiki",
       -- }
     },
+    keys = {
+      {
+        "<leader>jc",
+        function()
+          package.loaded["palettes.blog-dark"] = nil
+          package.loaded["palettes.blog-light"] = nil
+          local jolt = require "jolt.build"
+          local sheet = jolt.build_highlight_sheet()
+          if sheet == "" then
+            vim.notify "no cached styles, run build first!"
+            return
+          end
+          local static = { ["css/highlight.css"] = sheet }
+          jolt.write_static(static)
+          vim.notify "updated site highlights!"
+        end,
+      },
+      {
+        "<leader>jf",
+        function()
+          local jolt = require "jolt.build"
+          local opts = require("jolt.config").extend()
+          local content_dir = opts.content_dir
+          local current_file = vim.fn.expand "%"
+
+          if vim.fn.isabsolutepath(current_file) == 0 then
+            content_dir = vim.fs.basename(content_dir)
+          end
+
+          if vim.startswith(current_file, content_dir) then
+            local url = current_file:sub(#content_dir + 2)
+            jolt.build_changeset({ [url] = true }, opts)
+          else
+            vim.notify "this file not in content dir"
+          end
+        end,
+      },
+    },
   },
 }

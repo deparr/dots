@@ -54,6 +54,25 @@ function M.regen_sub_groups(self)
     exception   = self.red,
     operator    = self.fg,
   }
+  self.terminal = {
+    black = "#323232",
+    red = "#ac4242",
+    green = "#90a959",
+    yellow = "#f4bf75",
+    blue = "#6a9fb5",
+    purple = "#aa759f",
+    cyan = "#75b5aa",
+    white = "#d8d8d8",
+
+    bright_black = "#6b6b6b",
+    bright_red = "#c55555",
+    bright_green = "#aac474",
+    bright_yellow = "#feca88",
+    bright_blue = "#82b8c8",
+    bright_purple = "#c28cb8",
+    bright_cyan = "#93d3c3",
+    bright_white = "#f8f8f8",
+  }
 
   -- todo: attributes and preproc
   --        operator
@@ -73,6 +92,8 @@ function M.regen_sub_groups(self)
     ["@constant.builtin"] = "Special",
     ["@character"] = "Character",
     ["@function.builtin"] = "@function",
+    ["@function.builtin.zig"] = { fg = self.yellow },
+    ["@keyword.import.zig"] = { fg = self.yellow },
     ["@label"] = "Label",
     ["@module"] = { fg = self.purple },
     ["@module.builtin"] = { fg = self.light_purple, bold = true },
