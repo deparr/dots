@@ -36,5 +36,17 @@ require("lazy").setup("plugins", {
   },
 })
 
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0.0
+  vim.g.neovide_scroll_animation_length = 0.0
+  vim.g.neovide_hide_mouse_when_typing = true
+  local toggle = function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end
+
+  vim.keymap.set("n", "<m-cr>", toggle, { desc = "toggle fullscreen" })
+  vim.keymap.set("n", "<f11>", toggle, { desc = "toggle fullscreen" })
+end
+
 -- require("tairiki").load()
 vim.cmd.colorscheme "gruvbuddy"
