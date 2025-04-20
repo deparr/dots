@@ -3,7 +3,7 @@
 export PATH=$HOME/.local/bin:$PATH
 
 export SHELL=/usr/bin/zsh
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_DIR="$HOME/.config"
 #export ZDOTDIR="$HOME/.config/zsh"
 
 if hash nvim 2>/dev/null; then
@@ -12,22 +12,30 @@ if hash nvim 2>/dev/null; then
 else
     export EDITOR=vim
 fi
-export TERMINAL="alacritty"
-export TERMINAL_PROG="alacritty"
+# export TERMINAL="wezterm"
+# export TERMINAL_PROG="wezterm"
 export BROWSER="firefox"
 
 # This is probably a stupid idea?
 unset LS_COLORS
-export EXA_COLORS="ur=34:uw=34:ux=34:ue=34:gr=32:gw=32:gx=32:tr=31:tw=31:tx=31"
+export EXA_COLORS="ur=34:uw=34:ux=34:ue=34:gr=32:gw=32:gx=32:tr=31:tw=31:tx=31:da=38;5;245"
+
+export ZF_HIGHLIGHT="green"
 
 # morhetz/gruvbox
 #export FZF_DEFAULT_OPTS='--color=spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 
-# enkia/tokyonight
-#export FZF_DEFAULT_OPTS='--color=spinner:#bb9af7,hl:#7aa2f7,fg:#a9b1d6,header:#cfc9c2,info:#9ece6a,pointer:#e0af68,marker:#f7768e,fg+:#9aa5ce,prompt:#ff9e64,hl+:#f7768e'
+# paper color
+#export FZF_DEFAULT_OPTS='--color=fg:#4d4d4c,bg:#eeeeee,hl:#d7005f --color=fg+:#4d4d4c,bg+:#e8e8e8,hl+:#d7005f --color=info:#4271ae,prompt:#8959a8,pointer:#d7005f --color=marker:#4271ae,spinner:#4271ae,header:#4271ae'
 
-# seoul256
-export FZF_DEFAULT_OPTS='--color fg:242,bg:233,hl:65,fg+:15,bg+:234,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168'
+# seoul256 with and without background
+#export FZF_DEFAULT_OPTS='--color fg:242,bg:233,hl:65,fg+:15,bg+:234,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168'
+export FZF_DEFAULT_OPTS='--color fg:242,bg:-1,hl:65,fg+:15,bg+:-1,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168'
 
-# Node version manager
 export NVM_DIR="$HOME/.config/nvm"
+export XDEB_PKGROOT="$HOME/.config/xdeb"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+

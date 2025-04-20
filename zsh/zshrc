@@ -7,7 +7,7 @@ setopt FUNCTION_ARGZERO  # $0 is set to function name
 setopt INTERACTIVE_COMMENTS
 setopt AUTOCD
 
-unset PROMPT_SUBST
+# unset PROMPT_SUBST
 
 # ZSH Plugins
 #fpath
@@ -17,20 +17,24 @@ bindkey -e
 bindkey '^ ' autosuggest-accept
 bindkey '^n' autosuggest-accept
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5' # purple
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8' # bright black
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-# zsh stuff
 # Extra includes
 include=(
     'aliases'
     'functions'
 )
+
 for s in "${include[@]}"; do
-    source $XDG_CONFIG_HOME/zsh/include/${s}.zsh
-done; unset include
+    source $HOME/.config/zsh/include/${s}.zsh
+done; unset include; unset s;
 
 export HISTFILE=$HOME/.local/zsh_history
 export HISTSIZE=100000000
@@ -38,38 +42,86 @@ export SAVEHIST=100000000
 
 # Language specific stuff
 
-if [ -d /usr/local/go/bin/ ]; then
+# Go
+if [ -d ~/go ]; then
   export GOPATH=~/go
   export GOBIN="$GOPATH/bin"
-  export PATH="/usr/local/go/bin:$GOBIN:$PATH"
-elif [ -d ~/.go/bin/ ]; then
-  export GOPATH="$HOME/.gopath"
-  export GOROOT="$HOME/.go"
-  export GOBIN="$GOPATH/bin"
-  export PATH="$GOPATH/bin:$PATH"
+  export PATH="$GOBIN:$PATH"
 fi
 
-# nvm - node
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.cargo/env"
 
+# nvm - node # source using `snode` function instead
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "NVM_DIR"/nvm.sh" # load nvm
+#[ -s "$NVM_DIR/bash_completetion" ] && \. "$NVM_DIR/bash_completetion" # load bash comps
 
-# not even sure what this is
 zstyle :compinstall filename '/home/dpar/.zshrc'
 autoload -Uz compinit
 compinit
 
 # Prompt
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/zsh/starship.toml
-eval "$(starship init zsh)"
+setopt promptsubst
+# export PROMPT2='$(/home/dpar/.cargo/bin/starship prompt --continuation)'
+# export STARSHIP_CONFIG=$XDG_CONFIG_DIR/zsh/starship.toml
+# eval "$(starship init zsh)"
 
+export GEOMETRY_STATUS_COLOR="cyan"
+export GEOMETRY_HOSTNAME_HIDE_ON="void"
+export GEOMETRY_GIT_NO_COMMITS_MESSAGE="empty!"
+export GEOMETRY_GIT_GREP="rg"
+export GEOMETRY_STATUS_SYMBOL="▲"
+export GEOMETRY_STATUS_SYMBOL_ERROR="▲"
+export GEOMETRY_STATUS_SYMBOL_ROOT_ERROR="▼"
+export GEOMETRY_GIT_SYMBOL_CLEAN=""
+export GEOMETRY_GIT_SYMBOL_DIRTY="󰋙"
+export GEOMETRY_GIT_SYMBOL_UNPUSHED=""
+export GEOMETRY_GIT_SYMBOL_UNPULLED=""
+export GEOMETRY_GIT_SYMBOL_BARE="󰋙"
+export GEOMETRY_GIT_SYMBOL_REBASE=""
+export GEOMETRY_GIT_SYMBOL_STASHES=""
+# export GEOMETRY_TIME_COLOR_LONG="208" # orange
+export GEOMETRY_TIME_COLOR_LONG="yellow" # orange
+export GEOMETRY_TIME_COLOR_NEUTRAL="green"
+export GEOMETRY_NODE_SYMBOL="󰋙"
+
+export GEOMETRY_PROMPT=(geometry_exitcode geometry_status geometry_path)
+export GEOMETRY_RPROMPT=(geometry_better_jobs geometry_hostname geometry_rust geometry_zig geometry_bun geometry_node geometry_go geometry_git)
+
+export GEOMETRY_TITLE=()
+export GEOMETRY_CMDTITLE=()
+
+# Plugin
 plugin=(
-    #'zsh-nvm' # source usin `snode` function instead
     'zsh-autosuggestions'
+    'geometry'
     # syntax should always be last
     'zsh-syntax-highlighting'
 )
 for p in "${plugin[@]}"; do
-    source $XDG_CONFIG_HOME/zsh/plugin/${p}/${p}.zsh
+    source $HOME/.config/zsh/plugin/${p}/${p}.zsh
 done; unset plugin
 
+
+# pnpm
+export PNPM_HOME="/home/dpar/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# Wasmer
+export WASMER_DIR="/home/dpar/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+# bun completions
+[ -s "/home/dpar/.bun/_bun" ] && source "/home/dpar/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Turso
+export PATH="/home/dpar/.turso:$PATH"
+
+# opam configuration
+[[ ! -r /home/dpar/.opam/opam-init/init.zsh ]] || source /home/dpar/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
