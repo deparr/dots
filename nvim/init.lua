@@ -40,13 +40,21 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.0
   vim.g.neovide_scroll_animation_length = 0.0
   vim.g.neovide_hide_mouse_when_typing = true
-  local toggle = function()
-    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
-  end
 
+  vim.o.guifont = "Greybeard 18px,Symbols Nerd Font,Segoe UI Emoji:h14:#e-alias"
+
+  local toggle = "<cmd>lua vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen<cr>"
   vim.keymap.set("n", "<m-cr>", toggle, { desc = "toggle fullscreen" })
   vim.keymap.set("n", "<f11>", toggle, { desc = "toggle fullscreen" })
+  vim.keymap.set({ "n", "x" }, "<c-s-v>", '"+p', { desc = "paste clipboard" })
+  vim.keymap.set("n", "<c-=>", "<cmd>lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<cr>", { desc = "zoom in" })
+  vim.keymap.set("n", "<c-->", "<cmd>lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<cr>", { desc = "zoom out" })
+  vim.keymap.set("n", "<c-0>", "<cmd>lua vim.g.neovide_scale_factor = 1.0<cr>", { desc = "reset zoom" })
+  if vim.fn.getcwd() == "V:\\.local\\bin" then
+    vim.cmd.cd "V:/Code"
+  end
 end
 
 -- require("tairiki").load()
-vim.cmd.colorscheme "gruvbuddy"
+-- vim.cmd.colorscheme "gruvbuddy"
+vim.cmd.colorscheme "custom-gruvbox"

@@ -9,10 +9,10 @@ opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 opt.scrolloff = 6
-opt.mousescroll = "ver:1,hor:6"
+-- opt.mousescroll = "ver:1,hor:6" -- for ghostty smooth scroll
 
 opt.foldenable = false
-opt.foldmethod = 'manual'
+opt.foldmethod = "manual"
 opt.foldlevelstart = 99
 
 opt.tabstop = 4
@@ -35,20 +35,20 @@ opt.undodir = vim.fn.stdpath "data" .. "/undodir"
 opt.undofile = true
 
 -- better diffs
-opt.diffopt:append("iwhite")
-opt.diffopt:append("indent-heuristic")
-opt.diffopt:append("algorithm:histogram")
+opt.diffopt:append "iwhite"
+opt.diffopt:append "indent-heuristic"
+opt.diffopt:append "algorithm:histogram"
 
 if require("util").is_windows then
   opt.shell = "pwsh -NoLogo"
   -- this doesn't work
   -- opt.shellcmdflag = '-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
   -- this seems to work for basic ! commands, not sure about substituitions
-  opt.shellcmdflag = '-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command'
+  opt.shellcmdflag = "-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command"
   opt.shellredir = '2>&1 | &&{ "$_" } | Out-File %s; exit $lastexitcode'
   opt.shellpipe = '2>&1 | &&{ "$_" } | tee %s; exit $lastexitcode'
-  opt.shellquote = ''
-  opt.shellxquote = ''
+  opt.shellquote = ""
+  opt.shellxquote = ""
 end
 
 opt.hlsearch = false

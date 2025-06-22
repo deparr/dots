@@ -7,6 +7,7 @@ return {
     -- priority = 1000,
     config = function()
       require("tairiki.palette").register("gruvbuddy", require "palettes.gruvbuddy")
+      require("tairiki.palette").register("gruvbox", require "palettes.gruvbox")
       require("tairiki").setup {
         palette = "gruvbuddy",
         plugins = { auto = true },
@@ -40,7 +41,8 @@ return {
       }
     end,
   },
-  { "jwbaldwin/oscura.nvim" },
+  -- { "oonamo/ef-themes.nvim" },
+  { "ellisonleao/gruvbox.nvim" },
   { "sainnhe/sonokai" },
   { "ribru17/bamboo.nvim", opts = {} },
   -- {

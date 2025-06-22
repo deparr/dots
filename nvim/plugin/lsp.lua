@@ -7,7 +7,7 @@ vim.lsp.enable({
 
 local disable_semantic_tokens = {
   lua = true,
-  -- zig = true, -- set in zls.json
+  -- zig = true, -- set in zls.json OR lsp/zls.lua
   -- rust = true,
 }
 

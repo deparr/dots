@@ -145,6 +145,18 @@ h(0,"Changed",{fg = "#81a2be"})
 h(0,"Character",{fg = "#b5bd68"})
 h(0,"ColorColumn",{bg = "#282a2e"})
 h(0,"Comment",{fg = "#969896"})
+h(0,"CompileModeCheckResult",{bold = true,fg = "#de935f"})
+h(0,"CompileModeCheckTarget",{fg = "#de935f"})
+h(0,"CompileModeCommandOutput",{bold = false,fg = "#81a2be"})
+h(0,"CompileModeDirectoryMessage",{bold = false,fg = "#81a2be"})
+h(0,"CompileModeError",{bold = false,fg = "#cc6666"})
+h(0,"CompileModeErrorLocus",{link = "Visual"})
+h(0,"CompileModeInfo",{bold = false,fg = "#b5bd68"})
+h(0,"CompileModeMessage",{bold = false,fg = "none",underline = true})
+h(0,"CompileModeMessageCol",{bold = false,fg = "#8abeb7"})
+h(0,"CompileModeMessageRow",{bold = false,fg = "#b294bb"})
+h(0,"CompileModeOutputFile",{bold = true,fg = "#b294bb"})
+h(0,"CompileModeWarning",{bold = false,fg = "#f0c674"})
 h(0,"Conceal",{fg = "#969896"})
 h(0,"Conditional",{fg = "#b294bb"})
 h(0,"Constant",{fg = "#de935f"})
@@ -387,3 +399,22 @@ h(0,"rubyRepeat",{fg = "#b294bb"})
 h(0,"rubyStringDelimiter",{fg = "#b5bd68"})
 h(0,"rubySymbol",{fg = "#b5bd68"})
 h(0,"vimCommand",{fg = "#cc6666"})
+
+if vim.g.neovide then
+  vim.g.terminal_color_0 = "#323232"
+  vim.g.terminal_color_1 = "#ac4242"
+  vim.g.terminal_color_2 = "#90a959"
+  vim.g.terminal_color_3 = "#f4bf75"
+  vim.g.terminal_color_4 = "#6a9fb5"
+  vim.g.terminal_color_5 = "#aa759f"
+  vim.g.terminal_color_6 = "#75b5aa"
+  vim.g.terminal_color_7 = "#d8d8d8"
+  vim.g.terminal_color_8 = "#6b6b6b"
+  vim.g.terminal_color_9 = "#c55555"
+  vim.g.terminal_color_10 = "#aac474"
+  vim.g.terminal_color_11 = "#feca88"
+  vim.g.terminal_color_12 = "#82b8c8"
+  vim.g.terminal_color_13 = "#c28cb8"
+  vim.g.terminal_color_14 = "#93d3c3"
+  vim.g.terminal_color_15 = "#f8f8f8"
+end

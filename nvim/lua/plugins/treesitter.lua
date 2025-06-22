@@ -22,6 +22,7 @@ return {
         },
         highlight = {
           enable = true,
+          disable = { "rust" },
         },
         textobjects = {
           select = {

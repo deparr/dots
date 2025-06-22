@@ -107,6 +107,46 @@ return {
           end
         or builtin.live_grep
 
+      local maybe_project_finder = nil
+      if vim.g.neovide then
+        local pickers = require "telescope.pickers"
+        local finders = require "telescope.finders"
+        local conf = require("telescope.config").values
+
+        local theme = require("telescope.themes").get_dropdown { layout_config = { height = 25 } }
+
+        local project_picker = function(opts)
+          opts = opts or {}
+          pickers
+            .new(opts, {
+              prompt_title = "Switch Project",
+              finder = finders.new_oneshot_job(
+                { "fd", "-d", "1", "-t", "d", "-c", "never", "-a", ".", unpack(util.proj_dirs) },
+                {}
+              ),
+              sorter = conf.file_sorter(opts),
+              attach_mappings = function(prompt_bufnr, _)
+                actions.select_default:replace(function()
+                  actions.close(prompt_bufnr)
+                  local selection = action_state.get_selected_entry()
+                  if vim.cmd.Oil then vim.cmd.Oil(selection[1]) end
+                  vim.cmd.cd(selection[1])
+                  vim.cmd "silent! wincmd o"
+                end)
+                return true
+              end,
+            })
+            :find()
+        end
+
+        maybe_project_finder = {
+          "<leader>fp",
+          function()
+            project_picker(theme)
+          end,
+        }
+      end
+
       return {
         { "<leader>fr", builtin.resume },
         { "<leader>ff", ff },
@@ -127,6 +167,7 @@ return {
             builtin.grep_string { search = vim.fn.input "grep > " }
           end,
         },
+        maybe_project_finder,
       }
     end,
   },

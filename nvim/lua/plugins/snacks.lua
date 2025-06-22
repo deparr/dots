@@ -1,4 +1,4 @@
 return {
   "folke/snacks.nvim",
-  lazy = true
+  lazy = true,
 }

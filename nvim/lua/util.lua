@@ -5,6 +5,8 @@ M.is_windows = vim.uv.os_uname().sysname:match(".*[wW]indows.*") ~= nil
 M.dev_dir = M.is_windows and "V:\\Code" or "~/dev"
 M.in_gdproj = vim.fs.root(0, function(n, _) return n == "project.godot" or n == ".godot" end) ~= nil
 
+M.proj_dirs = M.is_windows and { "V:/Code" } or { "~/dev", "~/build" } -- hmm, duped
+
 function M.dev(path)
   local si = path:find("/")
   if si then

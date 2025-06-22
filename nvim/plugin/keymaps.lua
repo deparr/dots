@@ -1,14 +1,10 @@
 local set = vim.keymap.set
 
-local dircmd = vim.cmd.Ex
-if vim.cmd.Oil then
-  dircmd = vim.cmd.Oil
-end
-set({ "n" }, "<leader>pv", dircmd)
+set("n", "<leader>pv", vim.cmd.Oil or vim.cmd.Ex)
 
 -- easier begin/end
-set('', 'H', '^')
-set('', 'L', '$')
+set("n", 'H', '^')
+set("n", 'L', '$')
 
 -- move lines
 set("v", "J", ":m '>+1<CR>gv=gv")
