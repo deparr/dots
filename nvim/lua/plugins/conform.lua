@@ -6,7 +6,7 @@ return {
         lua = { "stylua" },
         go = { "goimports", "gofmt" },
         python = { "ruff_fix", "ruff_format" },
-        zig = { "zigfmt" }
+        zig = { "zigfmt" },
       },
     },
   },
