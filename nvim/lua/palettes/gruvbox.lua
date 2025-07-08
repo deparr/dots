@@ -1,9 +1,8 @@
--- gruvbox-ish - not quite as harsh, less red
 local util = require("tairiki.util")
 
 local M = {
   bg       = "#1d2021",
-  fg       = "#fbf1c7",
+  fg       = "#fbf1cc",
   purple   = "#d3869b",
   green    = "#b8bb26",
   orange   = "#fe8019",
@@ -33,7 +32,7 @@ function M.regen_sub_groups(self)
     ok    = self.cyan,
   }
   self.diff     = {
-    add    = util.blend(self.green, self.bg, 0.3),
+    add    = util.blend(self.cyan, self.bg, 0.3),
     remove = util.blend(self.red, self.bg, 0.1),
     change = util.blend(self.fg_dark3, self.bg, 0.3),
     text   = util.blend(self.blue, self.bg, 0.35),
@@ -96,6 +95,8 @@ function M.regen_sub_groups(self)
     ["@label"] = "Label",
     ["@type"] = "Type",
     ["@type.builtin"] = "@type",
+
+    ["@keyword.import.zig"] = "@function.builtin",
 
     rustIdentifier = { fg = self.red },
     rustCommentLineDoc = { fg = self.cyan },

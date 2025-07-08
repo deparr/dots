@@ -28,7 +28,7 @@ local h = {
   ["@diff.minus"] = { fg = red },
   ["@diff.plus"] = { fg = green },
   ["@function"] = { fg = purple, bold = true },
-  ["@function.builtin"] = { fg = pink },
+  ["@function.builtin"] = { fg = pink, bold = true },
   ["@function.call"] = { fg = black },
   ["@function.macro"] = { fg = pink },
   ["@function.method"] = { fg = purple, bold = true },
