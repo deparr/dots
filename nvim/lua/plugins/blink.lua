@@ -5,7 +5,11 @@ return {
     ---@module 'blink-cmp'
     ---@type blink.cmp.Config
     opts = {
-      keymap = { preset = "default" },
+      keymap = {
+        preset = "default",
+        -- windows eats <C-Space>
+        ["<C-Bslash>"] = require("util").is_windows and { "show", "show_documentation", "hide_documentation" } or nil,
+      },
       appearance = {
         use_nvim_cmp_as_default = false,
         nerd_font_variant = "normal",
@@ -21,10 +25,11 @@ return {
         },
       },
       cmdline = { enabled = false },
-      signature = { enabled = true },
+      signature = { enabled = true, window = { show_documentation = false } },
       completion = {
+        menu = { auto_show = false },
         accept = { auto_brackets = { enabled = false } },
-        ghost_text = { enabled = true },
+        ghost_text = { enabled = true, show_with_menu = false },
         documentation = { auto_show = false, auto_show_delay_ms = 300 },
       },
       fuzzy = { implementation = "rust" },

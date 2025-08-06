@@ -8,6 +8,7 @@ return {
     config = function()
       require("tairiki.palette").register("gruvbuddy", require "palettes.gruvbuddy")
       require("tairiki.palette").register("gruvbox", require "palettes.gruvbox")
+      require("tairiki.palette").register("alacritty", require "palettes.alacritty")
       require("tairiki").setup {
         palette = "gruvbuddy",
         plugins = { auto = true },
@@ -19,7 +20,7 @@ return {
           hl["Title"] = { fg = c.fg, bold = false }
           hl["Special"] = { fg = c.syn.special, bold = false }
 
-          hl["@string.special.url.gdscript"] = { fg = c.dark_cyan, italic = true }
+          hl["@string.special.url.gdscript"] = { fg = c.dark_cyan }
 
           hl["@string.special.url.gomod"] = { fg = c.dark_cyan, underline = false }
           hl["@string.special.url.gosum"] = { fg = c.dark_cyan, underline = false }

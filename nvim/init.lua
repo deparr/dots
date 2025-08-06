@@ -57,4 +57,4 @@ end
 
 -- require("tairiki").load()
 -- vim.cmd.colorscheme "gruvbuddy"
-vim.cmd.colorscheme "custom-gruvbox"
+vim.cmd.colorscheme "alacritty"

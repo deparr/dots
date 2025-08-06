@@ -1,16 +1,17 @@
-local white = "#c5c8c6"
-local purple = "#b294bb"
-local blue = "#81a2be"
-local cyan = "#8abeb7"
-local green = "#b5bd68"
-local yellow = "#d7af5f" -- sonokai yellow
-local orange = "#de935f"
-local gray = "#696969"
-local red = "#cc6666"
+local white = "#d8d8d8"
+local off_white = "#a8a8a8"
+local gray = "#7b7b7b"
+local red = "#ac4242"
+local green = "#90a959"
+local yellow = "#f4bf75"
+local blue = "#6a9fb5"
+local purple = "#aa759f"
+local cyan = "#75b5aa"
+local orange = "#cc7f40"
 
 local h = {
-  ["@attribute"] = { fg = yellow },
-  ["@attribute.builtin"] = { fg = yellow },
+  ["@attribute"] = { fg = blue },
+  ["@attribute.builtin"] = { fg = purple },
   ["@boolean"] = { fg = orange },
   ["@character"] = { fg = green },
   ["@character.special"] = { fg = white },
@@ -20,7 +21,7 @@ local h = {
   ["@comment.note"] = { fg = gray },
   ["@comment.todo"] = { fg = gray },
   ["@comment.warning"] = { fg = gray },
-  ["@constant"] = { fg = white, bold = true },
+  ["@constant"] = { fg = orange },
   ["@constant.builtin"] = { fg = orange },
   ["@constant.macro"] = { fg = yellow },
   ["@constructor"] = { fg = white },
@@ -28,9 +29,9 @@ local h = {
   ["@diff.minus"] = { fg = red },
   ["@diff.plus"] = { fg = green },
   ["@function"] = { fg = blue },
-  ["@function.builtin"] = { fg = yellow },
+  ["@function.builtin"] = { fg = cyan },
   ["@function.call"] = { fg = white },
-  ["@function.macro"] = { fg = yellow },
+  ["@function.macro"] = { fg = cyan },
   ["@function.method"] = { fg = blue },
   ["@function.method.call"] = { fg = white },
   ["@keyword"] = { fg = purple },
@@ -74,10 +75,10 @@ local h = {
   ["@module.builtin"] = { fg = white },
   ["@number"] = { fg = orange },
   ["@number.float"] = { fg = orange },
-  ["@operator"] = { fg = cyan },
+  ["@operator"] = { fg = off_white },
   ["@property"] = { fg = white },
-  ["@punctuation.bracket"] = { fg = white },
-  ["@punctuation.delimiter"] = { fg = white },
+  ["@punctuation.bracket"] = { fg = off_white },
+  ["@punctuation.delimiter"] = { fg = off_white },
   ["@punctuation.special"] = { fg = orange },
   ["@string"] = { fg = green },
   ["@string.documentation"] = { fg = green },
@@ -90,10 +91,10 @@ local h = {
   ["@tag"] = { fg = blue },
   ["@tag.attribute"] = { fg = yellow },
   ["@tag.builtin"] = { fg = blue },
-  ["@tag.delimiter"] = { fg = white },
+  ["@tag.delimiter"] = { fg = off_white },
   ["@type"] = { fg = white },
-  ["@type.builtin"] = { fg = orange },
-  ["@type.definition"] = { fg = cyan, bold = true },
+  ["@type.builtin"] = { fg = yellow },
+  ["@type.definition"] = { fg = cyan, bold = false },
   ["@variable"] = { fg = white },
   ["@variable.builtin"] = { fg = white },
   ["@variable.member"] = { fg = white },

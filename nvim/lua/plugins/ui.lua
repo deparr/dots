@@ -9,7 +9,6 @@ return {
       notification = {
         override_vim_notify = true,
         window = {
-          winblend = 0,
           relative = "editor",
         }
       }
@@ -17,6 +16,7 @@ return {
   },
   -- heirline config stolen and slightly modified from github/stevearc
   {
+    enabled = false,
     "rebelot/heirline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",

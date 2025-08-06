@@ -12,7 +12,7 @@ return {
       ts.setup {
         -- windows eats <C-Space>
         pickers = require("util").is_windows and {
-          live_grep = { mappings = { i = { ["<C-\\>"] = "to_fuzzy_refine" } } },
+          live_grep = { mappings = { i = { ["<C-BSlash>"] = "to_fuzzy_refine" } } },
         } or nil,
         extensions = {
           fzf = {

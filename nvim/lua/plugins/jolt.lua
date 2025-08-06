@@ -14,9 +14,9 @@ return {
         return ret
       end,
       -- code_style = {
-      --   light = "wildcharm",
-      --   dark = "sonokai",
-      --   restore = "tairiki",
+      --   light = "bamboo-light",
+      --   dark = "alacritty",
+      --   restore = "alacritty",
       -- }
     },
     keys = {

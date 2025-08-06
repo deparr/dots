@@ -95,7 +95,8 @@ local ViMode = {
     },
   },
   provider = function(self) return " " .. self.mode_names[self.mode] .. " " end,
-  hl = function(self) return { fg = "bg", bg = self:mode_color(), bold = true } end,
+  -- hl = function(self) return { fg = "bg", bg = self:mode_color(), bold = true } end,
+  hl = function(self) return { fg = self:mode_color(), bold = true } end,
   update = {
     "ModeChanged",
   },
@@ -153,14 +154,8 @@ local FileFlags = {
 
 local FullFileName = {
   hl = function()
-    local fg
-    if vim.bo.modified then
-      fg = "yellow"
-    else
-      fg = "fg"
-    end
     return {
-      fg = fg,
+      fg = vim.bo.modified and "yellow" or "fg",
       bg = "bg",
     }
   end,
@@ -198,7 +193,6 @@ local function setup_colors()
     bg = utils.get_highlight("StatusLine").bg or "none",
     winbar_fg = utils.get_highlight("WinBar").fg or "none",
     winbar_bg = utils.get_highlight("WinBar").bg or "none",
-    tablinesel_fg = utils.get_highlight("TabLineSel").fg or "none",
     tablinesel_bg = utils.get_highlight("TabLineSel").bg or "none",
     tabline_fg = utils.get_highlight("TabLine").fg or "none",
     red = utils.get_highlight("DiagnosticError").fg or "none",
@@ -288,7 +282,7 @@ local LSPActive = {
 
 local Ruler = {
   provider = " %P %02l:%02c ",
-  hl = function(self) return { fg = "bg", bg = self:mode_color(), bold = true } end,
+  hl = function(self) return { fg = self:mode_color(), bold = true } end,
 }
 
 local Git = {
