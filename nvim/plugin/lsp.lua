@@ -43,11 +43,12 @@ vim.diagnostic.config {
     show_header = false,
     severity_sort = true,
   },
-  virtual_text = {
-    enabled = true,
-    severity = { min = vim.diagnostic.severity.WARN },
-    source = "if_many",
-  },
+  virtual_text = false,
+  -- virtual_text = {
+  --   enabled = false,
+  --   severity = { min = vim.diagnostic.severity.WARN },
+  --   source = "if_many",
+  -- },
   virtual_lines = false,
   severity_sort = true,
   signs = {
@@ -68,8 +69,8 @@ end)
 vim.keymap.set("", "<leader>ll", function()
   local config = vim.diagnostic.config() or {}
   if config.virtual_text then
-    vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+    vim.diagnostic.config { virtual_text = false }
   else
-    vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+    vim.diagnostic.config { virtual_text = true }
   end
-end, { desc = "toggle lsp_lines" })
+end, { desc = "toggle lsp_virtual_text" })

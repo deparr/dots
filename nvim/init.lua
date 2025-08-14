@@ -21,7 +21,7 @@ require("lazy").setup("plugins", {
   defaults = { lazy = false },
   change_detection = { enabled = true, notify = false },
   install = {
-    colorscheme = { "gruvbuddy", "habamax" },
+    colorscheme = { "alacritty", "habamax" },
   },
   performance = {
     rtp = {

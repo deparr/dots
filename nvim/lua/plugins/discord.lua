@@ -14,7 +14,7 @@ return {
         end,
         file_browser = "browsing files",
         terminal = "terminal",
-        plugin_manager = true,
+        plugin_manager = false,
         lsp = true,
       },
     },
