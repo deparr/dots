@@ -1,0 +1,39 @@
+recycle() {
+    recycler_dir=$RECYCLER_DIR
+    if [[ -z $recycler_dir ]]; then
+        recycler_dir="$HOME/dev/recycler"
+    fi
+
+    recycler_base=$(basename "$recycler_dir")
+
+    query=$1
+    if [[ -n $query ]]; then
+        query="--query=$query"
+    fi
+
+    # because you can't tell fd to print relative paths when the search dir is absolute
+    pushd
+    cd $recycler_dir
+    selection=$(fd --color never --type file -E 'bin\*' -E 'readme.md' -E 'project.godot' -E '*.import' -E 'examples/*' | fzf $query)
+    popd
+
+    if [ -z $selection ]; then
+        return
+    fi
+
+    selection_subpath="${selection#*${recycler_base}/}"
+
+    printf "\e[36mcopy to where? \e[30m(${selection_subpath})\e[0m "
+    read -r user_path
+
+    if [[ -n $user_path ]]; then
+        selection_subpath="$user_path"
+    fi
+
+    selection_subpath_dir=${selection_subpath%/*}
+
+    mkdir -p "$selection_subpath_dir"
+    cp "$selection" "$selection_subpath"
+
+    echo "copied $selection to $selection_subpath"
+}
