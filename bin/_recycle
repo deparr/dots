@@ -12,28 +12,27 @@ recycle() {
     fi
 
     # because you can't tell fd to print relative paths when the search dir is absolute
-    pushd
+    pushd -q
     cd $recycler_dir
     selection=$(fd --color never --type file -E 'bin\*' -E 'readme.md' -E 'project.godot' -E '*.import' -E 'examples/*' | fzf $query)
-    popd
+    popd -q
 
     if [ -z $selection ]; then
         return
     fi
 
-    selection_subpath="${selection#*${recycler_base}/}"
-
-    printf "\e[36mcopy to where? \e[30m(${selection_subpath})\e[0m "
+    printf "\e[36mcopy to where? \e[30m(${selection})\e[0m "
     read -r user_path
 
-    if [[ -n $user_path ]]; then
-        selection_subpath="$user_path"
+    if [[ -z $user_path ]]; then
+        user_path="$selection"
     fi
 
-    selection_subpath_dir=${selection_subpath%/*}
+    selection_full_path="$recycler_dir/$selection"
+    user_path_parent=${user_path%/*}
 
-    mkdir -p "$selection_subpath_dir"
-    cp "$selection" "$selection_subpath"
+    mkdir -p "$user_path_parent"
+    cp "$selection_full_path" "$user_path"
 
-    echo "copied $selection to $selection_subpath"
+    echo "recycled $selection to $user_path"
 }

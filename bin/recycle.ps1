@@ -4,41 +4,39 @@ function recycle ($query) {
 
     $recycler_dir = $env:RECYCLER_DIR
     if ([string]::IsNullOrEmpty($recycler_dir)) {
-        $recycler_dir = Join-Path $HOME "dev/recycler"
+        $recycler_dir = "V:\Code\recycler"
     }
 
     $recycler_base = Split-Path $recycler_dir -Leaf
 
     if ($query) {
-        $query = "--query=$query"
+        $query = @("--query=$query")
     }
 
-    # because you can't tell fd to print relative paths when the search dir is absolute
     pushd
     cd $recycler_dir
-    $selection= fd --color never --type file -E 'bin\*' -E 'readme.md' -E 'project.godot' -E '*.import' -E 'examples/*' | fzf "$query"
+    $selection= fd --color never --type file -E 'bin\*' -E 'readme.md' -E 'project.godot' -E '*.import' -E 'examples/*' | fzf @query
     popd
+    $selection_full_path = Join-Path $recycler_dir $selection
 
     if ([string]::IsNullOrEmpty($selection)) {
         return
     }
 
-    $selection_subpath = $selection -replace ".*$recycler_base[\\/]", ""
 
-    Write-Host -NoNewline "`e[36mcopy to where? `e[30m($selection_subpath)`e[0m "
+    Write-Host -NoNewline "`e[36mcopy to where? `e[30m($selection)`e[0m "
     $user_path = Read-Host
-
-    if (-not [string]::IsNullOrEmpty($user_path)) {
-        $selection_subpath = $user_path
+    
+    if ([string]::IsNullOrEmpty($user_path)) {
+        $user_path = $selection
     }
 
-    $selection_subpath_dir = Split-Path $selection_subpath -Parent
-    if (-not [string]::IsNullOrEmpty($selection_subpath_dir)) {
-        New-Item -ItemType Directory -Force -Path $selection_subpath_dir | Out-Null
+    $user_path_parent = Split-Path $user_path -Parent
+    if (-not [string]::IsNullOrEmpty($user_path_parent)) {
+        New-Item -ItemType Directory -Force -Path $user_path_parent | Out-Null
     }
 
-    cp -Path $selection -Destination $selection_subpath -Force
+    cp -Path $selection_full_path -Destination $user_path -Force
 
-    Write-Host "copied $selection to $selection_subpath"
+    Write-Host "copied $selection to $user_path"
 }
-
