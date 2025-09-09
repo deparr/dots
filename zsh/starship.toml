@@ -52,7 +52,7 @@ version_format = "${raw}"
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
 symbol = "⚡"
 version_format = "${raw}"
-style = "#fab040"
+style = "bold #fab040"
 [cmd_duration]
 format = "[$duration]($style)"
 min_time = 10_000
