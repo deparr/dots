@@ -16,7 +16,7 @@ success_symbol = "[λ](bold green)"
 error_symbol = "[λ](bold red)"
 [git_branch]
 # format = "[\\[](bold bright-black)[$symbol$branch(:$remote_branch)]($style)[\\]](bold bright-black)"
-# format = "[\\[](bold bright-black)[$symbol$branch(:$remote_branch)]($style)[\\]](bold bright-black)"
+format = "[$symbol$branch(:$remote_branch)]($style) "
 ignore_branches = ["main", "master"]
 [git_commit]
 format = "[\\([$hash](green bold)[$tag](bright-green bold)\\)](bold green) "
@@ -30,20 +30,28 @@ format = "[\\($state( $progress_current/$progress_total)\\)]($style) "
 symbol = "🍞 "
 style = "bold bright-red"
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+version_format = "${raw}"
 [deno]
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+version_format = "${raw}"
 [golang]
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+version_format = "${raw}"
 [nodejs]
+symbol = "󰋘 "
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+version_format = "${raw}"
 [python]
 format = "[\\[](bold bright-black)[${symbol}$version(\\($virtualenv\\))]($style)[\\]](bold bright-black) "
+version_format = "${raw}"
 [rust]
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
 style = "bold bright-red"
+version_format = "${raw}"
 [zig]
 format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
 symbol = "⚡"
+version_format = "${raw}"
 style = "#fab040"
 [cmd_duration]
 format = "[$duration]($style)"
