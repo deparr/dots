@@ -1,18 +1,51 @@
-#format = "$directory$git_branch$shlvl[>](bold black) "
-scan_timeout = 10
-command_timeout = 200
+format = """
+$directory\
+$git_branch$git_commit$git_state$git_status\
+$bun\
+$deno\
+$golang\
+$nodejs\
+$python\
+$rust\
+$zig\
+$cmd_duration\
+$line_break$character"""
 
-[directory]
-truncate_to_repo = true
-
-[cmd_duration]
-disabled = true
-
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
 [git_branch]
-ignore_branches = ['main', 'master']
-
-#[shlvl]
-#disabled = false
-#threshold = 5
-#format = '[$shlvl ]($style)'
+# format = "[\\[](bold bright-black)[$symbol$branch(:$remote_branch)]($style)[\\]](bold bright-black)"
+# format = "[\\[](bold bright-black)[$symbol$branch(:$remote_branch)]($style)[\\]](bold bright-black)"
+ignore_branches = ["main", "master"]
+[git_commit]
+format = "[\\([$hash](green bold)[$tag](bright-green bold)\\)](bold green) "
+tag_symbol = " "
+tag_disabled = false
+[git_state]
+format = "[\\($state( $progress_current/$progress_total)\\)]($style) "
+[git_status]
+# format = "([\\[](bold bright-black)[$all_status$ahead_behind]($style)[\\]](bold bright-black))"
+[bun]
+symbol = "🍞 "
+style = "bold bright-red"
+format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+[deno]
+format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+[golang]
+format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+[nodejs]
+format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+[python]
+format = "[\\[](bold bright-black)[${symbol}$version(\\($virtualenv\\))]($style)[\\]](bold bright-black) "
+[rust]
+format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+style = "bold bright-red"
+[zig]
+format = "[\\[](bold bright-black)[$symbol($version)]($style)[\\]](bold bright-black) "
+symbol = "⚡"
+style = "#fab040"
+[cmd_duration]
+format = "[$duration]($style)"
+min_time = 10_000
 

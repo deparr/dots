@@ -41,7 +41,8 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.0
   vim.g.neovide_hide_mouse_when_typing = true
 
-  vim.o.guifont = "Greybeard 18px,Symbols Nerd Font,Segoe UI Emoji:h14:#e-alias"
+  -- vim.o.guifont = "Greybeard 18px,Symbols Nerd Font,Segoe UI Emoji:h14:#e-alias"
+  vim.o.guifont = "Maple Mono Baked,Symbols Nerd Font,Segoe UI Emoji:h11"
 
   local toggle = "<cmd>lua vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen<cr>"
   vim.keymap.set("n", "<m-cr>", toggle, { desc = "toggle fullscreen" })
