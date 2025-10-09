@@ -5,6 +5,7 @@ return {
   settings = {
     zls = {
       semantic_tokens = "none",
+      enable_argument_placeholders = false,
     }
   }
 }
