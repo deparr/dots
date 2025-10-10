@@ -25,6 +25,12 @@ bindkey "^X^E" edit-command-line
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5' # purple
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8' # bright black
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=green'
 
 # Extra includes
 include=(
@@ -49,6 +55,7 @@ if [ -d ~/go ]; then
   export PATH="$GOBIN:$PATH"
 fi
 
+# Rust? Rust
 . "$HOME/.cargo/env"
 
 # nvm - node # source using `snode` function instead
@@ -62,45 +69,44 @@ compinit
 # Prompt
 setopt promptsubst
 # export PROMPT2='$(/home/dpar/.cargo/bin/starship prompt --continuation)'
-# export STARSHIP_CONFIG=$XDG_CONFIG_DIR/zsh/starship.toml
-# eval "$(starship init zsh)"
+export STARSHIP_CONFIG=$XDG_CONFIG_DIR/zsh/starship.toml
+eval "$(starship init zsh)"
 
-export GEOMETRY_STATUS_COLOR="cyan"
-export GEOMETRY_HOSTNAME_HIDE_ON="void"
-export GEOMETRY_GIT_NO_COMMITS_MESSAGE="empty!"
-export GEOMETRY_GIT_GREP="rg"
-export GEOMETRY_STATUS_SYMBOL="▲"
-export GEOMETRY_STATUS_SYMBOL_ERROR="▲"
-export GEOMETRY_STATUS_SYMBOL_ROOT_ERROR="▼"
-export GEOMETRY_GIT_SYMBOL_CLEAN=""
-export GEOMETRY_GIT_SYMBOL_DIRTY="󰋙"
-export GEOMETRY_GIT_SYMBOL_UNPUSHED=""
-export GEOMETRY_GIT_SYMBOL_UNPULLED=""
-export GEOMETRY_GIT_SYMBOL_BARE="󰋙"
-export GEOMETRY_GIT_SYMBOL_REBASE=""
-export GEOMETRY_GIT_SYMBOL_STASHES=""
-# export GEOMETRY_TIME_COLOR_LONG="208" # orange
-export GEOMETRY_TIME_COLOR_LONG="yellow" # orange
-export GEOMETRY_TIME_COLOR_NEUTRAL="green"
-export GEOMETRY_NODE_SYMBOL="󰋙"
-
-export GEOMETRY_PROMPT=(geometry_exitcode geometry_status geometry_path)
-export GEOMETRY_RPROMPT=(geometry_better_jobs geometry_hostname geometry_rust geometry_zig geometry_bun geometry_node geometry_go geometry_git)
-
-export GEOMETRY_TITLE=()
-export GEOMETRY_CMDTITLE=()
-
+# export GEOMETRY_STATUS_COLOR="cyan"
+# export GEOMETRY_HOSTNAME_HIDE_ON="void"
+# export GEOMETRY_GIT_NO_COMMITS_MESSAGE="empty!"
+# export GEOMETRY_GIT_GREP="rg"
+# export GEOMETRY_STATUS_SYMBOL="▲"
+# export GEOMETRY_STATUS_SYMBOL_ERROR="▲"
+# export GEOMETRY_STATUS_SYMBOL_ROOT_ERROR="▼"
+# export GEOMETRY_GIT_SYMBOL_CLEAN=""
+# export GEOMETRY_GIT_SYMBOL_DIRTY="󰋙"
+# export GEOMETRY_GIT_SYMBOL_UNPUSHED=""
+# export GEOMETRY_GIT_SYMBOL_UNPULLED=""
+# export GEOMETRY_GIT_SYMBOL_BARE="󰋙"
+# export GEOMETRY_GIT_SYMBOL_REBASE=""
+# export GEOMETRY_GIT_SYMBOL_STASHES=""
+# # export GEOMETRY_TIME_COLOR_LONG="208" # orange
+# export GEOMETRY_TIME_COLOR_LONG="yellow" # orange
+# export GEOMETRY_TIME_COLOR_NEUTRAL="green"
+# export GEOMETRY_NODE_SYMBOL="󰋙"
+#
+# export GEOMETRY_PROMPT=(geometry_status geometry_path)
+# export GEOMETRY_RPROMPT=(geometry_better_jobs geometry_hostname geometry_rust geometry_zig geometry_bun geometry_node geometry_go geometry_git)
+#
+# export GEOMETRY_TITLE=()
+# export GEOMETRY_CMDTITLE=()
+#
 # Plugin
 plugin=(
     'zsh-autosuggestions'
-    'geometry'
+    # 'geometry'
     # syntax should always be last
     'zsh-syntax-highlighting'
 )
 for p in "${plugin[@]}"; do
     source $HOME/.config/zsh/plugin/${p}/${p}.zsh
 done; unset plugin
-
 
 # pnpm
 export PNPM_HOME="/home/dpar/.local/share/pnpm"
