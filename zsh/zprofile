@@ -3,7 +3,7 @@
 export PATH=$HOME/.local/bin:$PATH
 
 export SHELL=/usr/bin/zsh
-export XDG_CONFIG_DIR="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/.config"
 #export ZDOTDIR="$HOME/.config/zsh"
 
 if hash nvim 2>/dev/null; then
@@ -12,13 +12,10 @@ if hash nvim 2>/dev/null; then
 else
     export EDITOR=vim
 fi
-# export TERMINAL="wezterm"
-# export TERMINAL_PROG="wezterm"
 export BROWSER="firefox"
 
 # This is probably a stupid idea?
-unset LS_COLORS
-export EXA_COLORS="ur=34:uw=34:ux=34:ue=34:gr=32:gw=32:gx=32:tr=31:tw=31:tx=31:da=38;5;245"
+# unset LS_COLORS
 
 export ZF_HIGHLIGHT="green"
 export FZF_DEFAULT_OPTS='--color fg:242,bg:-1,hl:65,fg+:15,bg+:-1,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168'

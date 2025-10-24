@@ -17,6 +17,7 @@ error_symbol = "[λ](bold red)"
 [git_branch]
 # format = "[\\[](bold bright-black)[$symbol$branch(:$remote_branch)]($style)[\\]](bold bright-black)"
 format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = ""
 ignore_branches = ["main", "master"]
 [git_commit]
 format = "[\\([$hash](green bold)[$tag](bright-green bold)\\)](bold green) "

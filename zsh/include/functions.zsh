@@ -25,7 +25,7 @@ extract () {
 
 # don't source node at startup
 function snode() {
-    source $XDG_CONFIG_DIR/zsh/plugin/zsh-nvm/zsh-nvm.plugin.zsh
+    source $XDG_CONFIG_HOME/zsh/plugin/zsh-nvm/zsh-nvm.plugin.zsh
 }
 
 function geometry_bun() {
