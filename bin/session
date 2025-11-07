@@ -1,0 +1,68 @@
+#!/usr/bin/zsh
+
+
+function tmuxs() {
+    local dirs=(~/dev ~/build)
+
+    local selected
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        # find w/ depth 1, type dir, and no colors
+        #selected=$( fd -d 1 -t d -c never . ~/dev | fzf)
+        selected=$( fd -d 1 -t d -c never . ${dirs[@]} | ${FILTER_PROG:-fzf})
+    fi
+
+    if [[ -z $selected ]]; then
+        exit 0
+    fi
+
+    local selected_name=$(basename "$selected" /)
+    local tmux_running=$(pgrep tmux)
+
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        tmux new-session -s $selected_name -c $selected
+        exit 0
+    fi
+
+    if ! tmux has-session -t=$selected_name 2> /dev/null; then
+        tmux new-session -ds $selected_name -c $selected
+    fi
+
+    if [[ -z $(tmux list-clients) ]]; then
+        exec tmux attach -t $selected_name -c $selected
+    else
+        tmux switch-client -t $selected_name
+    fi
+}
+
+function session() {
+    local root=${DEV_ROOT:-"~/dev"}
+    if [[ "$1" == "-b" || "$1" == "--build" ]]; then
+        root=${BUILD_ROOT:-"~/build"}
+        shift
+    fi
+
+    local proj
+    if [[ -n "$1" && -d "$1" ]]; then
+        proj="$root/$1"
+    else
+        proj=$(fd --exact-depth 2 --type d . $root | ${FILTER_PROG:-fzf})
+        if [[ $? -ne 0 ]]; then
+            echo "exiting with bas exit"
+            exit 0
+        fi
+    fi
+    echo "$proj"
+
+    cd "$proj"
+    # todo emit title change sequence
+}
+
+if [[ ${0:t} == "tmuxs" ]]; then
+    tmuxs
+else
+    session
+fi
+
+
