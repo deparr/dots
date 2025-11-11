@@ -1,16 +1,11 @@
 #!/usr/bin/zsh
 
-
 function tmuxs() {
-    local dirs=(~/dev ~/build)
-
     local selected
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        # find w/ depth 1, type dir, and no colors
-        #selected=$( fd -d 1 -t d -c never . ~/dev | fzf)
-        selected=$( fd -d 1 -t d -c never . ${dirs[@]} | ${FILTER_PROG:-fzf})
+        selected=$( fd --exact-depth 2 --type d --color never . "${DEV_ROOT:-"$HOME/dev"}" | ${FILTER_PROG:-fzf})
     fi
 
     if [[ -z $selected ]]; then
@@ -37,21 +32,15 @@ function tmuxs() {
 }
 
 function session() {
-    local root=${DEV_ROOT:-"~/dev"}
-    if [[ "$1" == "-b" || "$1" == "--build" ]]; then
-        root=${BUILD_ROOT:-"~/build"}
-        shift
-    fi
-
+    local root = ${DEV_ROOT:-"$HOME/dev"}
     local proj
-    if [[ -n "$1" && -d "$1" ]]; then
+    if [[ -n "$1" && -d "$root/$1" ]]; then
         proj="$root/$1"
     else
-        proj=$(fd --exact-depth 2 --type d . $root | ${FILTER_PROG:-fzf})
-        if [[ $? -ne 0 ]]; then
-            echo "exiting with bas exit"
-            exit 0
-        fi
+        proj=$(fd --exact-depth 2 --type d --color never . "$root" | ${FILTER_PROG:-fzf})
+    fi
+    if [[ -z $proj ]]; then
+        exit 0
     fi
     echo "$proj"
 
