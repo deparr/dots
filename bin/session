@@ -1,11 +1,11 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 function tmuxs() {
     local selected
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$( fd --exact-depth 2 --type d --color never . "${DEV_ROOT:-"$HOME/dev"}" | ${FILTER_PROG:-fzf})
+        selected=$(fd --exact-depth 2 --type d --color never . "${DEV_ROOT:-"$HOME/dev"}" | ${FILTER_PROG:-fzf})
     fi
 
     if [[ -z $selected ]]; then
@@ -32,7 +32,7 @@ function tmuxs() {
 }
 
 function session() {
-    local root = ${DEV_ROOT:-"$HOME/dev"}
+    local root=${DEV_ROOT:-"$HOME/dev"}
     local proj
     if [[ -n "$1" && -d "$root/$1" ]]; then
         proj="$root/$1"
@@ -53,5 +53,4 @@ if [[ ${0:t} == "tmuxs" ]]; then
 else
     session
 fi
-
 

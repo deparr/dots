@@ -125,6 +125,8 @@ export WASMER_DIR="/home/dpar/.wasmer"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# these sometimes cause problems
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # opam configuration
