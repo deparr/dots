@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+
+cd ~/Downloads
+curl -sL "https://discord.com/api/download/stable?platform=linux&format=tar.gz" -o "newest-discord.tar.gz"
+sudo mv newest-discord.tar.gz /opt && cd /opt
+sudo tar -xzf newest-discord.tar.gz
+sudo rm newest-discord.tar.gz
+
