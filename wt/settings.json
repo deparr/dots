@@ -1,0 +1,65 @@
+{
+    "keybindings": [
+        {
+            "id": null,
+            "keys": "ctrl+c"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "User.moveFocus.87C324ED",
+            "keys": "alt+l"
+        },
+        {
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.moveFocus.2A0DA8E0",
+            "keys": "alt+h"
+        },
+        {
+            "id": "User.openTabRenamer",
+            "keys": "ctrl+`"
+        },
+        {
+            "id": "User.moveFocus.F747588A",
+            "keys": "alt+j"
+        },
+        {
+            "id": "User.moveFocus.6CD791B",
+            "keys": "alt+k"
+        }
+    ],
+    "schemes": [
+        {
+            "background": "#262626",
+            "black": "#101010",
+            "blue": "#6A9FB5",
+            "brightBlack": "#6B6B6B",
+            "brightBlue": "#82B8C8",
+            "brightCyan": "#93D3C3",
+            "brightGreen": "#AAC474",
+            "brightPurple": "#C28CB8",
+            "brightRed": "#C55555",
+            "brightWhite": "#F8F8F8",
+            "brightYellow": "#FECA88",
+            "cursorColor": "#D6C4A1",
+            "cyan": "#75B5AA",
+            "foreground": "#D8D8D8",
+            "green": "#90A959",
+            "name": "alacritty",
+            "purple": "#AA759F",
+            "red": "#C55555",
+            "selectionBackground": "#928374",
+            "white": "#D8D8D8",
+            "yellow": "#F4BF75"
+        }
+    ]
+}
