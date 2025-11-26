@@ -1,38 +1,62 @@
-# font-family = Berkeley Mono
-# font-family-bold = 
-# font-family-italic = 
-# font-family-bold-italic = 
-# font-feature = 
-# font-family = Segoe UI Emoji
-# font-family = nonicons
+# variable, use at higher weight
+# 11 - 11.5 is okay
+font-family = Maple Mono Baked
+font-variation=wght=300
+freetype-load-flags = no-autohint
+font-size = 11
 
-font-size = 12
+# font-family = Iosevka Baked
+# font-feature = +calt
+# freetype-load-flags = no-autohint
+# font-size = 13
+
+# pixel perfect at multiples of 9px, 4.5 also okay
+# font-family = Pixel Code
+# font-feature = +calt, +ss20
+# freetype-load-flags = no-autohint, monochrome
+# font-size = 13.5
+
+# pixel perfect at multiples of 11px, 16.5 also okay
+# font-family = Departure Mono
+# font-size = 16.5
+# freetype-load-flags = no-autohint, monochrome
+
+# looks good at 11 and better on light themes ??
+# font-family = Monaspace Neon Var
+# font-variation=wght=500
+# # use less ligs, ones primarly change spacing only
+# font-feature = +calt, +liga, -ss01, -ss02, -ss03, -ss04, +ss05, -ss06, +ss07, +ss08, -ss09, +ss10
+# font-size = 11
+
+# good at 16 or 18
+# font-family = Terminus
+# # todo: needs extra line height
+# font-size = 18
 
 command = zsh --login
 
-theme = tairiki
+theme = alacritty
 
 cursor-style = block
 cursor-style-blink = false
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = 3
+mouse-scroll-multiplier = 2.5
 
 scrollback-limit = 10000000
-# x11-instance-name = 
 
-# window-padding-x = 2
-# window-padding-y = 2
 window-padding-balance = true
 window-padding-color = background
-window-inherit-working-directory = true
+# window-inherit-working-directory = true
 window-inherit-font-size = true
 
-adjust-box-thickness = -2
+unfocused-split-opacity = 1
+
+# adjust-box-thickness = -2
 
 window-decoration = server
 
 # light dark system ghostty
-window-theme = dark
+window-theme = ghostty
 
 resize-overlay = never
 resize-overlay-position = bottom-right
@@ -40,10 +64,14 @@ resize-overlay-position = bottom-right
 shell-integration = detect
 shell-integration-features = no-cursor,sudo,title
 
+link-previews = osc8
+
 # requires systemd
 linux-cgroup = never
 
 gtk-titlebar = true
-gtk-tabs-location = bottom
+gtk-tabs-location = top
 gtk-wide-tabs = false
+
+keybind = super+`=toggle_quick_terminal
 

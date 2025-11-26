@@ -1,7 +1,8 @@
-background = #181818
+# background = #181818
+background = #262626
 foreground = #d8d8d8
 
-palette = 0= #323232
+palette = 0= #101010
 palette = 1= #ac4242
 palette = 2= #90a959
 palette = 3= #f4bf75
@@ -17,3 +18,8 @@ palette = 12= #82b8c8
 palette = 13= #c28cb8
 palette = 14= #93d3c3
 palette = 15= #f8f8f8
+
+cursor-color = #d6c4a1
+
+selection-background = #928374
+selection-foreground = #262626
