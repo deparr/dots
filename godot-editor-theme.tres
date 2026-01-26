@@ -1,5 +1,13 @@
 [gd_resource type="Theme"]
 
+; gui settings
+; style classic
+; base color: #363d4a
+; accent color: #70bafa
+; icon saturation: 1.0
+; draw relationship lines: all
+; corner radius: 3
+
 [resource]
 ; Tree/constants/v_separation = 4
 ; Tree/constants/item_margin = 12
