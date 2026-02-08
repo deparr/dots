@@ -1,0 +1,79 @@
+[{
+    "layer": "top",
+    "position": "bottom",
+    "height": 34,
+    //"width": 1920,
+    "spacing": 20,
+    "modules-left": [
+        "niri/workspaces",
+        // https://github.com/calico32/waybar-niri-windows
+        // "cffi/niri-windows",
+        // https://github.com/LawnGnome/niri-taskbar
+        "cffi/niri-taskbar"
+    ],
+    // "modules-center": [
+    //     "niri/window"
+    // ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "clock"
+    ],
+    "niri/workspaces": {
+    },
+    "cffi/niri-taskbar": {
+        "module_path": "/home/dpar/.config/waybar/ffi/libniri_taskbar.so",
+        "options": {
+            "notifications": true
+        }
+    },
+    "cffi/niri-windows": {
+        "module_path": "/home/dpar/.config/waybar/ffi/waybar-niri-windows.so",
+        "options": {
+            "mode": "graphical"
+        }
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10,
+        "show-passive-items": true
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "clock": {
+        // %-I still doesn't work for removing leading zeros
+        "format": "{0:%I}:{0:%M} {0:%p}\n{0:%m}/{0:%d}/{0:%G}",
+        "justify": "center",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "shift_reset",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
+    }
+}]
