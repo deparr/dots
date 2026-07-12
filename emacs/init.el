@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -45,6 +46,37 @@
     ring-bell-function 'ignore)
   (setq even-window-sizes nil)
 
+  ;; Better font rendering on Linux
+  (setq x-use-underline-position-properties t)
+  (setq underline-minimum-offset 1)
+
+  ;; Pixel-precise font rendering
+  (setq frame-resize-pixelwise t)
+  (setq window-resize-pixelwise t)
+
+  ;; Font settings
+  (set-face-attribute 'default nil
+                      :font "Roboto Mono Regular"
+                      :height 110
+                      ;; :height 180
+                      :weight 'regular)
+
+  ;; Use different weights for emphasis
+  (set-face-attribute 'bold nil :weight 'semibold)
+  (set-face-attribute 'italic nil :slant 'italic)
+
+  ;; Ensure proper emoji rendering with fallback
+  (set-fontset-font t 'emoji "Segoe UI Emoji" nil 'append)
+
+  ;; Make mode-line half height
+  (set-face-attribute 'mode-line nil :height 120)
+  (set-face-attribute 'mode-line-inactive nil :height 120)
+
+  (menu-bar-mode 0)
+  (scroll-bar-mode 0)
+  (tool-bar-mode 0)
+  (fringe-mode 0)
+
   :custom
   (use-short-answers t) ;; y or n
   (inhibit-startup-message t) ;; no startup screen
@@ -69,6 +101,7 @@
   (treesit-auto-install 'prompt))
 
 (use-package evil
+  :ensure t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)   ; required for evil-collection
@@ -80,54 +113,31 @@
 ;; Evil bindings for common Emacs modes (magit, dired, help, etc.)
 (use-package evil-collection
   :after evil
+  :ensure t
   :config
   (evil-collection-init))
 
 ;; gc/gcc to comment lines (like vim-commentary)
-(use-package evil-commentary
-  :after evil
-  :config
-  (evil-commentary-mode))
+; (use-package evil-commentary
+;   :after evil
+;   :ensure t
+;   :config
+;   (evil-commentary-mode))
 
 (use-package magit
   :ensure t)
 
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t
-  :init
-  (load-theme 'sanityinc-tomorrow-night t)
-  :config
-  ;; Better font rendering on Linux
-  (setq x-use-underline-position-properties t)
-  (setq underline-minimum-offset 1)
-
-  ;; Pixel-precise font rendering
-  (setq frame-resize-pixelwise t)
-  (setq window-resize-pixelwise t)
-
-  ;; Font settings
-  (set-face-attribute 'default nil
-                      :font "IBM Plex Mono Text"
-                      :height 120
-                      ;; :height 180
-                      :weight 'regular)
-
-  ;; Use different weights for emphasis
-  (set-face-attribute 'bold nil :weight 'semibold)
-  (set-face-attribute 'italic nil :slant 'italic)
-
-  ;; Ensure proper emoji rendering with fallback
-  (set-fontset-font t 'symbol "Noto Color Emoji" nil 'prepend)
-  (set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
-
-  ;; Make mode-line half height
-  (set-face-attribute 'mode-line nil :height 120)
-  (set-face-attribute 'mode-line-inactive nil :height 120)
-
-  (menu-bar-mode 0)
-  (scroll-bar-mode 0)
-  (tool-bar-mode 0)
-  (fringe-mode 0))
+(use-package gruber-darker-theme
+    :ensure t
+    :init)
+; (use-package ef-themes
+;   :vc (:url "https://github.com/protesilaos/ef-themes")
+;   :ensure t
+;   :init
+;   ; (ef-themes-take-over-modus-themes-mode 1)
+;   ; (setq modus-themes-mixed-fonts t)
+;   ; (setq modus-themes-italic-constructs t)
+;   (load-theme 'ef-maris-dark t))
 
 (use-package vertico
   :ensure t
@@ -138,14 +148,6 @@
   :ensure t
   :custom
   (completion-styles '(orderless basic)))
-
-(use-package vterm
-  :defer t
-  :custom
-  (vterm-max-scrollback 5000)
-  (vterm-timer-delay 0.01)
-  (vterm-buffer-name-string "vterm %s")
-  (vterm-shell "zsh"))
 
 (use-package eglot
   :custom
@@ -175,3 +177,15 @@
   (setq python-indent-offset 4)
   :hook
   (python-ts-mode . eglot-ensure))
+
+(use-package zig-mode
+  :ensure t
+  :mode "\\.zig\\'"
+  :hook
+  (zig-ts-mode . eglot-ensure))
+
+(use-package gdscript-mode
+  :vc (:url "git@github.com:godotengine/emacs-gdscript-mode.git"
+       :rev :newest)
+  :hook
+  (gdscript-mode . eglot-ensure))
