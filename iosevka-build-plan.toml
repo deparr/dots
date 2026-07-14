@@ -6,14 +6,14 @@ noCvSs = false
 exportGlyphNames = false
 
 [buildPlans.IosevkaBaked.weights.Regular]
-shape = 550
-menu = 500
-css = 500
+shape = 450
+menu = 450
+css = 450
 
 [buildPlans.IosevkaBaked.weights.Bold]
 shape = 750
-menu = 700
-css = 700
+menu = 750
+css = 750
 
 [buildPlans.IosevkaBaked.slopes.Upright]
 angle = 0

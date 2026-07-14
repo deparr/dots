@@ -4,10 +4,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-  ;; (setq custom-file "~/.emacs.d/custom.el") ;; unsure of what this is used for
+(add-to-list 'load-path "~/.config/emacs/local/")
+
 (use-package emacs
   :init
-  (setq custom-file "~/.emacs.d/custom.el")
+  (setq custom-file "~/.config/emacs/custom.el")
 
   ; (cua-mode 1) ;; not sure if I'd want this
   (recentf-mode t)
@@ -56,7 +57,7 @@
 
   ;; Font settings
   (set-face-attribute 'default nil
-                      :font "Roboto Mono Regular"
+                      :font "Iosevka Baked"
                       :height 110
                       ;; :height 180
                       :weight 'regular)
@@ -67,6 +68,7 @@
 
   ;; Ensure proper emoji rendering with fallback
   (set-fontset-font t 'emoji "Segoe UI Emoji" nil 'append)
+  
 
   ;; Make mode-line half height
   (set-face-attribute 'mode-line nil :height 120)
@@ -127,9 +129,11 @@
 (use-package magit
   :ensure t)
 
-(use-package gruber-darker-theme
-    :ensure t
-    :init)
+(use-package monokai-pro-theme
+  :ensure t
+  :config
+  (load-theme 'monokai-pro t))
+
 ; (use-package ef-themes
 ;   :vc (:url "https://github.com/protesilaos/ef-themes")
 ;   :ensure t
@@ -154,38 +158,46 @@
   ;; shutdown eglot servers after buffer is closed
   (eglot-autoshutdown t))
 
-(use-package rust-mode
-  :ensure t
-  :mode "\\.rs\\'"
-  :hook
-  (rust-ts-mode . eglot-ensure))
+; (use-package rust-mode
+;   :ensure t
+;   :mode "\\.rs\\'"
+;   :hook
+;   (rust-ts-mode . eglot-ensure))
+;
+; (use-package go-mode
+;   :ensure t
+;   :mode "\\.go\\'"
+;   :custom
+;   (go-ts-mode-indent-offset 4)
+;   :config
+;   (setq-default tab-width 4)
+;   :hook
+;   (go-ts-mode . eglot-ensure))
+;
+; (use-package python-mode
+;   :ensure t
+;   :config
+;   (setenv "PYTHONENCODING" "utf-8")
+;   (setq python-indent-offset 4)
+;   :hook
+;   (python-ts-mode . eglot-ensure))
+;
+; (use-package zig-mode
+;   :ensure t
+;   :mode "\\.zig\\'"
+;   :hook
+;   (zig-ts-mode . eglot-ensure))
+;
+; (use-package gdscript-mode
+;   :vc (:url "git@github.com:godotengine/emacs-gdscript-mode.git"
+;        :rev :newest)
+;   :hook
+;   (gdscript-mode . eglot-ensure))
 
-(use-package go-mode
-  :ensure t
-  :mode "\\.go\\'"
-  :custom
-  (go-ts-mode-indent-offset 4)
-  :config
-  (setq-default tab-width 4)
-  :hook
-  (go-ts-mode . eglot-ensure))
+(require 'simpc-mode)
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+(add-to-list 'auto-mode-alist '("\\.[b]\\'" . simpc-mode))
 
-(use-package python-mode
-  :ensure t
-  :config
-  (setenv "PYTHONENCODING" "utf-8")
-  (setq python-indent-offset 4)
-  :hook
-  (python-ts-mode . eglot-ensure))
+(require 'jai-mode)
 
-(use-package zig-mode
-  :ensure t
-  :mode "\\.zig\\'"
-  :hook
-  (zig-ts-mode . eglot-ensure))
-
-(use-package gdscript-mode
-  :vc (:url "git@github.com:godotengine/emacs-gdscript-mode.git"
-       :rev :newest)
-  :hook
-  (gdscript-mode . eglot-ensure))
+(load-file custom-file)
